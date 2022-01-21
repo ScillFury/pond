@@ -122,7 +122,7 @@ function CurrencyRow({
     >
       <CurrencyLogo currency={currency} size={'24px'} />
       <Column>
-        <Text title={currency.name} fontWeight={500}>
+        <Text title={currency.name} fontWeight={500} color='#7c7690'>
           {getCurrencySymbol(currency, chainId)?.replace(/\(Deprecated\)/, '')}
         </Text>
         <FadedSpan>

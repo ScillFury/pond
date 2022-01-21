@@ -12,7 +12,6 @@ import { CloseIcon, LinkStyledButton, TYPE } from '../../theme'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
-import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
 import CommonBases from './CommonBases'
@@ -80,11 +79,11 @@ export function CurrencySearch({
     const tokens = Object.values(allTokens)
     return showMultiBridgeTokens
       ? tokens.filter(
-          token => (token as WrappedTokenInfo).tokenInfo?.isMultiBridge || token.address === FUSE_BNB.address
-        )
+        token => (token as WrappedTokenInfo).tokenInfo?.isMultiBridge || token.address === FUSE_BNB.address
+      )
       : listType === 'Bridge'
-      ? tokens.filter(token => token.address !== FUSE_BNB.address && token.address !== FUSE_BUSD.address)
-      : tokens
+        ? tokens.filter(token => token.address !== FUSE_BNB.address && token.address !== FUSE_BUSD.address)
+        : tokens
   }, [allTokens, listType, showMultiBridgeTokens])
 
   const filteredTokens: Token[] = useMemo(() => {
@@ -157,11 +156,11 @@ export function CurrencySearch({
     <Column style={{ width: '100%', flex: '1 1' }}>
       <PaddedColumn gap="14px">
         <RowBetween>
-          <Text fontWeight={500} fontSize={16}>
+          <Text fontWeight={500} fontSize={16} color='#797197'>
             Select a token
             <QuestionHelper text="Find a token by searching for its name or symbol or by pasting its address below." />
           </Text>
-          <CloseIcon onClick={onDismiss} />
+          <CloseIcon onClick={onDismiss} color='#797197' />
         </RowBetween>
         <SearchInput
           type="text"
@@ -176,7 +175,7 @@ export function CurrencySearch({
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
         <RowBetween>
-          <Text fontSize={14} fontWeight={500}>
+          <Text fontSize={14} fontWeight={500} color='#797197'>
             Token Name
           </Text>
           <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder(iso => !iso)} />
@@ -208,13 +207,9 @@ export function CurrencySearch({
           {selectedListInfo.current ? (
             <Row>
               {selectedListInfo.current.logoURI ? (
-                <ListLogo
-                  style={{ marginRight: 12 }}
-                  logoURI={selectedListInfo.current.logoURI}
-                  alt={`${selectedListInfo.current.name} list logo`}
-                />
+                <img src='images/plogo.png' alt='logo' width={30} style={{ marginRight: '10px' }} />
               ) : null}
-              <TYPE.main id="currency-search-selected-list-name">{selectedListInfo.current.name}</TYPE.main>
+              <TYPE.main id="currency-search-selected-list-name" style={{ color: '#797197' }}>{selectedListInfo.current.name}</TYPE.main>
             </Row>
           ) : null}
           <LinkStyledButton
@@ -222,7 +217,7 @@ export function CurrencySearch({
             onClick={onChangeList}
             id="currency-search-change-list-button"
           >
-            {selectedListInfo.current ? 'Change' : 'Select a list'}
+            {selectedListInfo.current ? <span style={{ color: '#797197' }}>Change</span> : <span style={{ color: '#797197' }}>Select a list</span>}
           </LinkStyledButton>
         </RowBetween>
       </Card>

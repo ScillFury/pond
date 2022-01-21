@@ -1,30 +1,17 @@
-import React, { useRef, useContext, useState } from 'react'
-import { Settings, X } from 'react-feather'
-import styled from 'styled-components'
-import { useUserSlippageTolerance, useExpertModeManager, useUserDeadline } from '../../state/user/hooks'
-import TransactionSettings from '../TransactionSettings'
-import { RowBetween } from '../Row'
-import { TYPE } from '../../theme'
-import QuestionHelper from '../QuestionHelper'
-import Toggle from '../Toggle'
-import { ThemeContext } from 'styled-components'
-import { ButtonError } from '../Button'
-import { useSettingsMenuOpen, useToggleSettingsMenu } from '../../state/application/hooks'
-import { Text } from 'rebass'
-import Modal from '../Modal'
-import { darken } from 'polished'
-
-const StyledMenuIcon = styled(Settings)`
-  height: 100%;
-  width: 18%;
-  padding: 10px;
-  padding-right: 0px;
-  padding-left: 0px;
-  > * {
-    stroke: white;
-    stroke-width: 1px;
-  }
-`
+import React, { useRef, useContext, useState } from 'react';
+import { X } from 'react-feather';
+import styled from 'styled-components';
+import { useUserSlippageTolerance, useExpertModeManager, useUserDeadline } from '../../state/user/hooks';
+import TransactionSettings from '../TransactionSettings';
+import { RowBetween } from '../Row';
+import { TYPE } from '../../theme';
+import QuestionHelper from '../QuestionHelper';
+import Toggle from '../Toggle';
+import { ThemeContext } from 'styled-components';
+import { ButtonError } from '../Button';
+import { useSettingsMenuOpen, useToggleSettingsMenu } from '../../state/application/hooks';
+import { Text } from 'rebass';
+import Modal from '../Modal';
 
 const StyledCloseIcon = styled(X)`
   height: 20px;
@@ -40,22 +27,16 @@ const StyledCloseIcon = styled(X)`
 
 const StyledMenuButton = styled.button`
   display: flex;
-  flex-wrap; wrap;
-  justify-content: left;
+  justify-content: center;
   width: 100%;
-  height: 48px;
   border: none;
   background-color: transparent;
-  margin: 0;
+  margin: -25px 0 0 0;
   padding: 0;
-  padding: 0.15rem 32px;
-  font-wight: 100;
   >span{
-    line-height: 42px;
-    font-size: 16px;
-    font-weight: 300;
-    color: white;
-    margin-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #7b6ea4;
   }
   svg path{
     stroke: white;
@@ -66,8 +47,6 @@ const StyledMenuButton = styled.button`
   :focus {
     cursor: pointer;
     outline: none;
-    background-color: ${({ theme }) => darken(0.05, theme.bg7)};
-    
   }
 `
 const EmojiWrapper = styled.div`
@@ -91,7 +70,7 @@ const MenuFlyout = styled.span`
   min-width: 100%;
   padding-left: 12px;
   padding-right: 12px;
-  background-color: ${({ theme }) => theme.secondary4};
+  background-color: #e7fafe;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
   display: flex;
@@ -120,7 +99,8 @@ const ModalContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.bg2};
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  background-color: white;
   border-radius: 20px;
 `
 
@@ -150,18 +130,18 @@ export default function SettingsTab() {
         <ModalContentWrapper>
           <RowBetween padding="1rem 2rem">
             <div />
-            <Text fontWeight={500} fontSize={20}>
+            <Text fontWeight={500} fontSize={20} color='#7571a1'>
               Are you sure?
             </Text>
             <StyledCloseIcon onClick={() => setShowConfirmation(false)} />
           </RowBetween>
           <Break />
           <ModalContentInnerWrapper>
-            <Text fontWeight={500} fontSize={20} marginBottom={16}>
+            <Text fontWeight={500} fontSize={20} marginBottom={16} color='#7571a1'>
               Expert mode turns off the confirm transaction prompt and allows high slippage trades that often result in
               bad rates and lost funds.
             </Text>
-            <Text fontWeight={600} fontSize={20} marginBottom={16}>
+            <Text fontWeight={600} fontSize={20} marginBottom={16} color='#7571a1'>
               ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
             </Text>
             <ButtonError
@@ -174,7 +154,7 @@ export default function SettingsTab() {
                 }
               }}
             >
-              <Text fontSize={14} fontWeight={500} id="confirm-expert-mode">
+              <Text fontSize={14} fontWeight={500} color='#7571a1' id="confirm-expert-mode">
                 Turn On Expert Mode
               </Text>
             </ButtonError>
@@ -182,7 +162,7 @@ export default function SettingsTab() {
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledMenuIcon /> <span> Settings </span>
+        <span> Settings </span>
         {expertMode && (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
@@ -212,13 +192,13 @@ export default function SettingsTab() {
             toggle={
               expertMode
                 ? () => {
-                    toggleExpertMode()
-                    setShowConfirmation(false)
-                  }
+                  toggleExpertMode()
+                  setShowConfirmation(false)
+                }
                 : () => {
-                    toggle()
-                    setShowConfirmation(true)
-                  }
+                  toggle()
+                  setShowConfirmation(true)
+                }
             }
           />
         </MenuFlyout>

@@ -6,7 +6,7 @@ import { RowBetween } from '../Row'
 import { ChevronDown } from 'react-feather'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 
-const Base = styled(RebassButton)<{
+const Base = styled(RebassButton) <{
   padding?: string
   width?: string
   borderRadius?: string
@@ -40,14 +40,15 @@ const Base = styled(RebassButton)<{
 `
 
 export const ButtonPrimary = styled(Base)`
-  background: ${({ theme }) => theme.bg8};
+  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
   color: black;
+  border:1px solid cyan;
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
     background-color: ${({ theme }) => darken(0.05, theme.primary1)};
   }
   &:hover {
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%) !important;
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
@@ -58,36 +59,26 @@ export const ButtonPrimary = styled(Base)`
     color: ${({ theme, altDisabledStyle }) => (altDisabledStyle ? 'white' : theme.text6)};
     cursor: auto;
     box-shadow: none;
-    border: 1px solid transparent;
     outline: none;
     opacity: ${({ altDisabledStyle }) => (altDisabledStyle ? '0.7' : '1')};
   }
 `
 
 export const ButtonLight = styled(Base)`
-  box-sizing: border-box;
   border-radius: 12px;
-  color: black;
-  font-size: 16px;
-  background: ${({ theme }) => theme.bg8};
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
+  color: white;
+  font-size: 18px;
+  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  border: 1px solid cyan;
+  :hover{
+      background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
   }
-  &:hover {
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.03, theme.primary5)};
-  }
-  &:active {
-    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && darken(0.05, theme.primary5)};
-    background-color: ${({ theme, disabled }) => !disabled && darken(0.05, theme.primary5)};
-  }
-
   :disabled {
     cursor: not-allowed;
-
     :hover {
       box-shadow: none;
       outline: none;
+      background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
     }
   }
 `

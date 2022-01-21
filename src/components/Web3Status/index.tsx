@@ -40,8 +40,8 @@ const IconWrapper = styled.div<{ size?: number; margin?: number }>`
 
 const Web3StatusGeneric = styled('div')`
   ${({ theme }) => theme.flexRowNoWrap}
-  background: linear-gradient(93.58deg, #3AD8A4 -105.35%, #F3FC1F 103.54%);
-  color: black;
+  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  color: white;
   padding: 0px 11px 0px 11px;
   font-weight: 400;
   align-items: center;
@@ -53,6 +53,9 @@ const Web3StatusGeneric = styled('div')`
   }
   > span {
     padding: 0px 8px 0px 5px;
+  }
+  :hover{
+    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
   }
   :hover,
   :focus {
@@ -71,7 +74,7 @@ const Web3StatusError = styled(Web3StatusGeneric)`
   font-weight: 500;
 `
 
-const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
+const Web3StatusConnect = styled(Web3StatusGeneric) <{ faded?: boolean }>`
   font-weight: 500;
   height: 32px;
   & > * {
@@ -87,7 +90,7 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
   }
 `
 
-const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
+const Web3StatusConnected = styled(Web3StatusGeneric) <{ pending?: boolean }>`
   border: 2px solid #b5f043;
   border-radius: 5px;
   background: black;

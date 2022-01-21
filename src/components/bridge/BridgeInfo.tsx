@@ -199,7 +199,7 @@ const Wrapper = styled.div`
 
   :hover {
     > span {
-      color: white;
+      color: #7c7099;
     }
 
     .purple-icon {

@@ -8,7 +8,6 @@ import binanceLogo from '../../../assets/svg/logos/binance-small-logo.svg'
 import { useHistory } from 'react-router-dom'
 
 const Container = styled('div')`
-  border: solid 2px #000000;
   border-radius: 5px;
 `
 const activeClassName = 'active'
@@ -35,12 +34,13 @@ const Button = styled('div').attrs({
     color: ${({ theme }) => darken(0.1, theme.text1)};
   }
   &.${activeClassName} {
-    font-weight: bold;
+    .Textname{
+      color:white !important;
+    }
     border: none;
     text-align: center;
-    background: linear-gradient(93.58deg, #3ad8a4 -105.35%, #f3fc1f 103.54%);
+    background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
     border-radius: 15px;
-    color: ${({ theme }) => theme.black};
   }
 `
 const LogoIcon = styled.img`
@@ -49,19 +49,20 @@ const LogoIcon = styled.img`
 `
 
 const LogoText = styled.small`
-  font-size: 12px;
+  font-size: 15px;
   line-height: 15px;
   display: flex;
+  color: #8a778f;
   align-items: center;
 `
 const ButtonWrapper = styled.div`
   display: flex;
   position: relative;
   margin: 5px 0;
-  background: #4a4a4e;
+  background: #ede9f7;
   border-radius: 20px;
   :after {
-    background: linear-gradient(-91.13deg, #f3fc1f -3.23%, #f3fc1f 26.69%, #3ad8a4 156.49%);
+    background:linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); 
     content: '';
     position: absolute;
     border-radius: 20px;
@@ -78,6 +79,7 @@ const ButtonWrapper = styled.div`
 
 const SubTitle = styled.small`
   font-weight: normal;
+  color:#797494;
 `
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -97,21 +99,21 @@ export default function Filter({ networkId }: { networkId: number }) {
         <ButtonWrapper>
           <Button className={networkId === FUSE_CHAIN_ID ? 'active' : ''} onClick={() => selectNetwork(FUSE_CHAIN_ID)}>
             <LogoIcon src={fuseLogo}></LogoIcon>
-            <LogoText>Fuse</LogoText>
+            <LogoText className='Textname'>Fuse</LogoText>
           </Button>
           <Button
             className={networkId === BINANCE_CHAIN_ID ? 'active' : ''}
             onClick={() => selectNetwork(BINANCE_CHAIN_ID)}
           >
             <LogoIcon src={binanceLogo}></LogoIcon>
-            <LogoText>BSC</LogoText>
+            <LogoText className='Textname'>BSC</LogoText>
           </Button>
           <Button
             className={networkId === ETHEREUM_CHAIN_ID ? 'active' : ''}
             onClick={() => selectNetwork(ETHEREUM_CHAIN_ID)}
           >
             <LogoIcon src={ethereumLogo}></LogoIcon>
-            <LogoText>Ethereum</LogoText>
+            <LogoText className='Textname'>Ethereum</LogoText>
           </Button>
         </ButtonWrapper>
       </Wrapper>

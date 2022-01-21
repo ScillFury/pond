@@ -5,8 +5,9 @@ export const SwapWrapper = styled('div')`
   position: relative;
   padding: 1rem;
   width: 100%;
-  background: ${({ theme }) => theme.bg1};
-  border: solid 2px #000000;
+  background: #fff;
+  /* border: solid 2px #000000; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 16px;
 `
 

@@ -36,10 +36,13 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(93.58deg, #3ad8a4 -105.35%, #f3fc1f 103.54%);
+  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
   border-radius: 5px;
   white-space: nowrap;
   width: 100%;
+  :hover{
+    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+  }
   :focus {
     border: 1px solid blue;
   }
@@ -74,7 +77,7 @@ const HeaderControls = styled.div`
   align-items: center;
 `
 
-const BalanceText = styled(Text)<{ active: boolean }>`
+const BalanceText = styled(Text) <{ active: boolean }>`
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
