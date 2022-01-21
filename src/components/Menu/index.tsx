@@ -8,7 +8,6 @@ import { ReactComponent as SwapIcon } from '../../assets/svg/swap.svg'
 import { ReactComponent as FarmIcon } from '../../assets/svg/farm.svg'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as LendingIcon } from '../../assets/svg/lend.svg'
-import { ReactComponent as GovernanceIcon } from '../../assets/svg/governance.svg'
 import { ReactComponent as Analytics } from '../../assets/svg/analyticsMenu.svg'
 
 import telegram from '../../assets/svg/telegram.svg'
@@ -305,16 +304,7 @@ const Item = styled(ExternalLink)`
     margin-right: 8px;
   }
 `
-const WhiteText = styled.span`
-  color: #b5b9d3;
-  font-size: 10px;
-  margin-left: 5px;
-  font-weight: 500;
-  line-height: 14px;
-`
-const GreyText = styled.span`
-  color: gray;
-`
+
 export default function Sidebar() {
   const node = useRef<HTMLDivElement>()
   const openRampWidget = useRampWidget()
@@ -375,15 +365,7 @@ export default function Sidebar() {
               <span>Lending</span>
             </MenuItemWrapper>
           </MenuItemInternal>
-          <MenuItemInternal to="/wallet">
-            <MenuItemWrapper>
-              <IconWrapper>
-                <GovernanceIcon />
-              </IconWrapper>
-              <GreyText>Governance</GreyText>
-              <WhiteText>soon</WhiteText>
-            </MenuItemWrapper>
-          </MenuItemInternal>
+ 
         </MenuWrapper>
         <SubMenuWrapper>
           <MenuItemExternal id="link" href="https://info.fuseswap.com/">
