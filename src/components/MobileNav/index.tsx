@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useNavMenuOpen, useToggleNavMenu } from '../../state/application/hooks'
 import { ReactComponent as CloseIcon } from '../../assets/svg/ham_menu_close.svg'
-import { FUSE_CHAIN_ID } from '../../connectors'
+// import { FUSE_CHAIN_ID } from '../../connectors'
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};

@@ -1,5 +1,5 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@web3-react/core'
 import { darken, lighten } from 'polished'
 import React, { useMemo } from 'react'
 import { Activity } from 'react-feather'
@@ -178,7 +178,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   return null
 }
 
-const Web3StatusInner = () => {
+function Web3StatusInner() {
   const { t } = useTranslation()
   const { account, connector, error } = useWeb3React()
   const { addChain, isAddChainEnabled } = useAddChain()
@@ -225,6 +225,10 @@ const Web3StatusInner = () => {
     //     <Text>Error</Text>
     //   </Web3StatusError>
     // )
+    return <Web3StatusError onClick={toggleWalletModal}>
+      <NetworkIcon />
+      <Text>Error</Text>
+    </Web3StatusError>
   } else {
     if (isAddChainEnabled) {
       return (
