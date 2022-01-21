@@ -14,7 +14,12 @@ export const BodyWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `
-
+export const HeaderContainer = styled.div`
+  display: none;
+  @media screen and (max-width:960px){
+      display:flex !important;
+  }
+`;
 export const MobileNav = styled.div`
   display: block;
   @media (max-width: 1600) {
@@ -28,7 +33,7 @@ export const MobileNav = styled.div`
 export default function AppBody({ children }: { children: React.ReactNode }) {
   return (
     <Container>
-      <Header />
+      <HeaderContainer><Header /></HeaderContainer>
       <MobileNav />
       <BodyWrapper>{children}</BodyWrapper>
     </Container>

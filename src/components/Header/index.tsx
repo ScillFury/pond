@@ -13,8 +13,8 @@ import { useToggleNavMenu } from '../../state/application/hooks'
 
 const HeaderFrame = styled.div`
   padding-right: 2.6%;
-  padding-top: 32px;
-  width: 100%;
+  width:250px;
+  margin-right: 30px;
   top: 0;
   opacity: 0.85;
   z-index: 3;
@@ -24,24 +24,27 @@ const HeaderFrame = styled.div`
     margin-bottom: 2rem;
     position: relative;
   `};
+  @media screen and (max-width:960px) {
+      padding: 32px 0 0 20px;
+  }
 `
 
 const HeaderElement = styled.div`
   display: flex;
   align-items: center;
-  margin: auto 1rem;
 `
 
 const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   border-radius: 5px;
   white-space: nowrap;
   width: 100%;
   :hover{
-    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
   }
   :focus {
     border: 1px solid blue;

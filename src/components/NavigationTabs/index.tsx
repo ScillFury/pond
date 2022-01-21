@@ -59,7 +59,8 @@ const StyledNavLink = styled(NavLink).attrs({
       bottom: 0;
       border-radius: 16px;
       padding: 2px;
-      background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+      /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+      background: #3ad889;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;

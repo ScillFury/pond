@@ -39,7 +39,8 @@ const Button = styled('div').attrs({
     }
     border: none;
     text-align: center;
-    background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+    /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+    background: #3ad889;
     border-radius: 15px;
   }
 `
@@ -62,7 +63,8 @@ const ButtonWrapper = styled.div`
   background: #ede9f7;
   border-radius: 20px;
   :after {
-    background:linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); 
+    /* background:linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));  */
+    background:#3ad889;
     content: '';
     position: absolute;
     border-radius: 20px;

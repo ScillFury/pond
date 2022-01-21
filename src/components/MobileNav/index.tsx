@@ -82,16 +82,16 @@ export default function MobileNav() {
             Bridge
           </LinkContent>
         </StyledLink>
-        <StyledLink to={`/farm/${FUSE_CHAIN_ID}`} onClick={() => toggleNavMenu()}>
+        {/* <StyledLink to={`/farm/${FUSE_CHAIN_ID}`} onClick={() => toggleNavMenu()}>
           <LinkContent>
             Farm
           </LinkContent>
-        </StyledLink>
-        <StyledLink to="/lending" onClick={() => toggleNavMenu()}>
+        </StyledLink> */}
+        {/* <StyledLink to="/lending" onClick={() => toggleNavMenu()}>
           <LinkContent>
             Lending
           </LinkContent>
-        </StyledLink>
+        </StyledLink> */}
         {/* <StyledLink to="/governance" onClick={() => toggleNavMenu()}>
           <LinkContent>
             Governance

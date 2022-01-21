@@ -26,7 +26,8 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   color: white;
   border-radius: 999px;
   outline: none;
@@ -40,7 +41,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   }
   :focus,
   :hover {
-    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
     color: #ffffff;
     svg path {
       stroke: #ffffff;

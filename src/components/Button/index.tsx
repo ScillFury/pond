@@ -40,7 +40,8 @@ const Base = styled(RebassButton) <{
 `
 
 export const ButtonPrimary = styled(Base)`
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background:#3ad889;
   color: black;
   border:1px solid cyan;
   &:focus {
@@ -48,7 +49,7 @@ export const ButtonPrimary = styled(Base)`
     background-color: ${({ theme }) => darken(0.05, theme.primary1)};
   }
   &:hover {
-    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%) !important;
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%) !important; */
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
@@ -68,10 +69,11 @@ export const ButtonLight = styled(Base)`
   border-radius: 12px;
   color: white;
   font-size: 18px;
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   border: 1px solid cyan;
   :hover{
-      background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+      /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
   }
   :disabled {
     cursor: not-allowed;

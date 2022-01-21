@@ -40,7 +40,8 @@ const IconWrapper = styled.div<{ size?: number; margin?: number }>`
 
 const Web3StatusGeneric = styled('div')`
   ${({ theme }) => theme.flexRowNoWrap}
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   color: white;
   padding: 0px 11px 0px 11px;
   font-weight: 400;
@@ -55,11 +56,11 @@ const Web3StatusGeneric = styled('div')`
     padding: 0px 8px 0px 5px;
   }
   :hover{
-    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
   }
   :hover,
   :focus {
-    background: linear-gradient(93.58deg, #f3fc1f -105.35%, #3ad889 103.54%);
+    /* background: linear-gradient(93.58deg, #f3fc1f -105.35%, #3ad889 103.54%); */
     > svg icon {
       stroke-width: 2px;
       fill: red;
@@ -177,7 +178,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   return null
 }
 
-function Web3StatusInner() {
+const Web3StatusInner = () => {
   const { t } = useTranslation()
   const { account, connector, error } = useWeb3React()
   const { addChain, isAddChainEnabled } = useAddChain()
@@ -214,16 +215,16 @@ function Web3StatusInner() {
       </Web3StatusConnected>
     )
   } else if (error) {
-    return error instanceof UnsupportedChainIdError && isAddChainEnabled ? (
-      <Web3StatusConnect onClick={() => addChain(FUSE_CHAIN)}>
-        <Text>Switch to Fuse</Text>
-      </Web3StatusConnect>
-    ) : (
-      <Web3StatusError onClick={toggleWalletModal}>
-        <NetworkIcon />
-        <Text>Error</Text>
-      </Web3StatusError>
-    )
+    // return error instanceof UnsupportedChainIdError && isAddChainEnabled ? (
+    //   <Web3StatusConnect onClick={() => addChain(FUSE_CHAIN)}>
+    //     <Text>Switch to Fuse</Text>
+    //   </Web3StatusConnect>
+    // ) : (
+    //   <Web3StatusError onClick={toggleWalletModal}>
+    //     <NetworkIcon />
+    //     <Text>Error</Text>
+    //   </Web3StatusError>
+    // )
   } else {
     if (isAddChainEnabled) {
       return (

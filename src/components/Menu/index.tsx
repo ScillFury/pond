@@ -14,12 +14,12 @@ import { FaGithubSquare, FaTwitterSquare, FaTelegram } from "react-icons/fa";
 // import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 // import { ReactComponent as LendingIcon } from '../../assets/svg/lend.svg'
 import { ReactComponent as Analytics } from '../../assets/svg/analyticsMenu.svg'
-
+import Header from "../Header";
 // import telegram from '../../assets/svg/telegram.svg'
 // import twitter from '../../assets/svg/twitter.svg'
 // import github from '../../assets/svg/github.svg'
 import { ReactComponent as FUSD } from '../../assets/svg/fuse-dollar.svg'
-import { FUSE_CHAIN_ID } from '../../connectors';
+// import { FUSE_CHAIN_ID } from '../../connectors';
 // import useRampWidget from '../../hooks/useRamp'
 // import Settings from '../../components/Settings';
 // import { FUSE_CHAIN_ID } from '../../connectors'
@@ -68,22 +68,22 @@ cursor: pointer;
     margin-right: 10px;
   }
 `;
-const TopMenuItemGO = styled.div`
-  width: 100px;
-  border-radius: 10px;
-  font-size: 18px;
-  margin-left: 20px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  height:50px;
-  cursor: pointer;
-  &:hover{
-    background-color:  #eef5f5;
-    color: #3f2a74 !important;
-  }
-`;
+// const TopMenuItemGO = styled.div`
+//   width: 100px;
+//   border-radius: 10px;
+//   font-size: 18px;
+//   margin-left: 20px;
+//   display:flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-weight: 600;
+//   height:50px;
+//   cursor: pointer;
+//   &:hover{
+//     background-color:  #eef5f5;
+//     color: #3f2a74 !important;
+//   }
+// `;
 const TopMenuItem = styled.div`
   width: 65px;
   border-radius: 10px;
@@ -151,11 +151,12 @@ export default function Sidebar() {
         <Link to='/swap'><TopMenuItem>Swap</TopMenuItem></Link>
         <Link to='/pool'><TopMenuItem>Pool</TopMenuItem></Link>
         <Link to='/bridge'><TopMenuItem>Bridge</TopMenuItem></Link>
-        <Link to={`/farm/${FUSE_CHAIN_ID}`}><TopMenuItem>Farm</TopMenuItem></Link>
-        <Link to='/lending'><TopMenuItem>Lending</TopMenuItem></Link>
+        {/* <Link to={`/farm/${FUSE_CHAIN_ID}`}><TopMenuItem>Farm</TopMenuItem></Link> */}
+        {/* <Link to='/lending'><TopMenuItem>Lending</TopMenuItem></Link> */}
         {/* <TopMenuItemGO>Governance</TopMenuItemGO> */}
       </MenuLeft>
       <MenuRight>
+        <Header />
         <a href='https://info.fuseswap.com/' target='_blank'><TopMenuRightItem><Analytics /></TopMenuRightItem></a>
         <TopMenuRightItem><FUSD /></TopMenuRightItem>
         <TopMenuRightItem><FiSettings className='SettingIcon' /></TopMenuRightItem>

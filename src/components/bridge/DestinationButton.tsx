@@ -8,7 +8,8 @@ export const Button = styled.button<{ isActive?: boolean; colorSelect?: string }
   justify-content: center;
   align-items: center;
   height: 48px;
-  background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1));
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   border-radius: 12px;
   border: 2px solid #FFFFFF;
   min-width: 160px;
@@ -23,7 +24,7 @@ export const Button = styled.button<{ isActive?: boolean; colorSelect?: string }
     color: ${({ color }) => color};
     /* border-color: ${({ color }) => color}; */
     cursor: pointer;
-    background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%);
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
   }
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
