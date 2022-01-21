@@ -26,7 +26,8 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  background-color: ${({ selected, theme }) => (selected ? theme.bg1 : theme.bg7)};
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   color: white;
   border-radius: 999px;
   outline: none;
@@ -40,7 +41,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   }
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => (selected ? darken(0.02, theme.bg1) : darken(0.02, theme.bg7))};
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
     color: #ffffff;
     svg path {
       stroke: #ffffff;
@@ -68,7 +69,7 @@ const Aligner = styled.span`
   justify-content: space-between;
 `
 
-const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
+const StyledDropDown = styled(DropDown) <{ selected: boolean }>`
   margin: 0 0.25rem 0 0.5rem;
   height: 35%;
 `
@@ -77,13 +78,15 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.bg2};
+  /* background-color: ${({ theme }) => theme.bg2}; */
   z-index: 1;
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.secondary4};
+  /* background-color: ${({ theme }) => theme.secondary4}; */
+  background-color: #ede9f7;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -167,7 +170,7 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.text2} fontWeight={500} fontSize={14}>
+              <TYPE.body color="#7e6e9d" fontWeight={500} fontSize={16}>
                 {label}
               </TYPE.body>
               {account && (
@@ -224,8 +227,8 @@ export default function CurrencyInputPanel({
                 <StyledTokenName className="token-symbol-container" active={Boolean(currency && currency.symbol)}>
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? currency.symbol.slice(0, 4) +
-                      '...' +
-                      currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
+                    '...' +
+                    currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
                     : getCurrencySymbol(currency, chainId)) || t('selectToken')}
                 </StyledTokenName>
               )}

@@ -5,8 +5,9 @@ export const TableWrapper = styled.div`
 `
 
 export const Table = styled.table`
-  background: #232638;
+  background: #7b6fa0;
   border-radius: 14px;
+  color: white;
   font-size: 16px;
   width: 100%;
   border-spacing: 0px;
@@ -17,7 +18,7 @@ export const Table = styled.table`
 `
 
 export const Th = styled.th`
-  border-bottom: 2.5px solid ${({ theme }) => theme.secondary4};
+  /* border-bottom: 2.5px solid ${({ theme }) => theme.secondary4}; */
   padding: 23px 22px;
   font-weight: 500;
 

@@ -324,7 +324,7 @@ export default function Bridge() {
                 )}
                 {isHome && (
                   <AutoColumn gap="md">
-                    <TYPE.mediumHeader color={theme.text2} fontSize={16}>
+                    <TYPE.mediumHeader color='#7a7193' fontSize={16}>
                       Select Destination
                     </TYPE.mediumHeader>
                     <DestinationWrapper>
@@ -337,7 +337,7 @@ export default function Bridge() {
                         bridgeDirection={BridgeDirection.FUSE_TO_ETH}
                         handleClick={handleDestinationSelect}
                       />
-                      <TYPE.body fontSize={14} color={theme.text2} fontWeight={500}>
+                      <TYPE.body fontSize={14} color='#7a7193' fontWeight={500}>
                         or
                       </TYPE.body>
                       <DestinationButton
@@ -353,7 +353,7 @@ export default function Bridge() {
                   </AutoColumn>
                 )}
                 <AutoColumn gap={'md'}>
-                  <TYPE.mediumHeader color={theme.text2} fontSize={16}>
+                  <TYPE.mediumHeader color='#7a7193' fontSize={16}>
                     Select Currency
                   </TYPE.mediumHeader>
                   <CurrencyInputPanel

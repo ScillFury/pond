@@ -12,11 +12,11 @@ export const Wrapper = styled('div')`
   position: relative;
   margin-bottom: 15px;
   width: 100%;
-  background: ${({ theme }) => theme.bg1};
-  border: solid 2px #000000;
+  background: #fff;
   border-radius: 16px;
-  -webkit-box-shadow: 9px 9px 0px 0px #000000, 8px 11px 0px 0px #000000;
-  box-shadow: 9px 9px 0px 0px #000000, 8px 11px 0px 0px #000000;
+  /* -webkit-box-shadow: 9px 9px 0px 0px #000000, 8px 11px 0px 0px #000000; */
+  /* box-shadow: 9px 9px 0px 0px #000000, 8px 11px 0px 0px #000000; */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
       margin-left: 0;
   margin-right: 0;
@@ -59,7 +59,8 @@ const StyledNavLink = styled(NavLink).attrs({
       bottom: 0;
       border-radius: 16px;
       padding: 2px;
-      background: linear-gradient(110deg, #b1ffbf 7%, #fff16d);
+      /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+      background: #3ad889;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;

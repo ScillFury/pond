@@ -26,7 +26,7 @@ import Maintenance from '../../components/swap/Maintenance'
 import MainCard from '../../components/MainCard'
 
 const DarkCard = styled(LightCard)`
-  background: ${({ theme }) => theme.secondary4};
+  background:#ede9f7;
   border: 0;
   font-weight: 500;
 `
@@ -98,14 +98,14 @@ export default function Pool() {
             <MainCard>
               <AutoColumn gap="lg" justify="center">
                 <ButtonPrimary id="join-pool-button" as={Link} style={{ padding: 16 }} to="/add/FUSE">
-                  <Text fontWeight={500} fontSize={16} color="black">
+                  <Text fontWeight={500} fontSize={18} color="white">
                     Add Liquidity
                   </Text>
                 </ButtonPrimary>
 
                 <AutoColumn gap="12px" style={{ width: '100%' }}>
                   <RowBetween padding={'0 8px'}>
-                    <Text color={theme.text2} fontWeight={500}>
+                    <Text color='#7671a2' fontWeight={500}>
                       Your Liquidity
                     </Text>
                     <Question text="When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below." />
@@ -113,13 +113,13 @@ export default function Pool() {
 
                   {!account ? (
                     <DarkCard padding="30px">
-                      <TYPE.body color={theme.text2} fontSize={14} fontWeight="500" textAlign="center">
+                      <TYPE.body color='#7671a2' fontSize={14} fontWeight="500" textAlign="center">
                         Connect to a wallet to view your liquidity.
                       </TYPE.body>
                     </DarkCard>
                   ) : v2IsLoading ? (
                     <DarkCard padding="30px">
-                      <TYPE.body color={theme.text2} fontSize={14} fontWeight="500" textAlign="center">
+                      <TYPE.body color='#7671a2' fontSize={14} fontWeight="500" textAlign="center">
                         <Dots>Loading</Dots>
                       </TYPE.body>
                     </DarkCard>
@@ -138,19 +138,18 @@ export default function Pool() {
                   )}
 
                   <div>
-                    <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+                    <Text textAlign="center" fontSize={14} style={{ color: '#7671a2', padding: '.5rem 0 .5rem 0' }}>
                       {hasV1Liquidity ? 'FuseFi V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
                       <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
-                        {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
+                        {hasV1Liquidity ? <span style={{ color: '#3087d7' }}>Migrate now.</span> : <span style={{ color: '#3087d7' }}>Import it.</span>}
                       </StyledInternalLink>
                     </Text>
-                    <Text textAlign="center" fontSize={14}>
+                    <Text textAlign="center" fontSize={14} style={{ color: '#7671a2' }}>
                       <ExternalLink
                         target="_blank"
                         href="https://docs.fuse.io/fuseswap/adding-liquidity"
-                        style={{ color: theme.secondary1 }}
                       >
-                        Click here
+                        <span style={{ color: '#3087d7' }}>Click here</span>
                       </ExternalLink>{' '}
                       to learn how to add liquidity
                     </Text>

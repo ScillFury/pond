@@ -5,6 +5,7 @@ import Popups from '../components/Popups'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
+import './App.css';
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -27,14 +28,12 @@ import MobileNav from '../components/MobileNav'
 
 const AppWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-height: 100vh;
   align-items: stretch;
 `
 const LeftMenu = styled.div`
-  height: 100vh;
-  flex: 0 0 260px;
-  order: -1;
+  height: 60px;
   ${({ theme }) => theme.mediaWidth.upToSmall`display: none;flex: 0 0 0`};
   ${({ theme }) => theme.mediaWidth.upToMedium`display: none;flex: 0 0 22%`};
 `
@@ -48,7 +47,6 @@ const Sticky = styled.div`
   ${({ theme }) => theme.mediaWidth.upToSmall`display: none;`};
 `
 const Content = styled.div`
-  background: black;
   order: 1;
   width: 100%;
   position: relative;

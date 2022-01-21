@@ -6,9 +6,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-basis: 25%;
   flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   align-items: flex-start;
-  background: #202231;
-  color: white;
+  background: #fff;
+  color: rgb(40, 13, 95);
   padding: 10px 16px;
   margin: 0 2.5px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
@@ -23,8 +24,8 @@ const ValueWrapper = styled.div`
 
 const Value = styled(animated.h2)`
   display: inline-block;
-  font-size: 24px;
-  color: white;
+  font-size:35px;
+  color: rgb(40, 13, 95);
   margin: 0;
 `
 
@@ -39,7 +40,7 @@ const ValueSuffix = styled.h2`
 const Title = styled.p`
   font-size: 16px;
   margin: 0;
-  color: #b5b9d3;
+  color: rgb(122, 110, 170);
   margin-bottom: 34px;
 `
 

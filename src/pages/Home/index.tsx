@@ -52,11 +52,7 @@ export default function HomePage() {
       <Wrap>
         <Prices />
         <Container>
-  
-          <Item>
-     
-     
-          </Item>
+          <Item />
         </Container>
       </Wrap>
     </AppBody>

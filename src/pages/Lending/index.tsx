@@ -20,6 +20,7 @@ const Wrapper = styled('div')`
 const Text = styled('div')`
   width: 545px;
   max-width: 100%;
+  color: #7870a2;
 `
 
 export default function LendingPage() {

@@ -8,9 +8,10 @@ export const Button = styled.button<{ isActive?: boolean; colorSelect?: string }
   justify-content: center;
   align-items: center;
   height: 48px;
-  background: #242637;
+  /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
+  background: #3ad889;
   border-radius: 12px;
-  border: 2px solid #FFFFFF
+  border: 2px solid #FFFFFF;
   min-width: 160px;
   max-width: 100%;
   border-width: 2px;
@@ -19,13 +20,11 @@ export const Button = styled.button<{ isActive?: boolean; colorSelect?: string }
   font-weight: 500;
   outline: 0;
   
-  >span{
-    positi;
-  }
   &:hover {
     color: ${({ color }) => color};
-    border-color: ${({ color }) => color};
+    /* border-color: ${({ color }) => color}; */
     cursor: pointer;
+    /* background: linear-gradient(93.58deg,#f3fc1f -105.35%,#3ad889 103.54%); */
   }
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -64,7 +63,7 @@ export default function DestinationButton({
       isActive={bridgeDirection === selectedBridgeDirection}
       onClick={() => handleClick(bridgeDirection)}
     >
-      <Logo src={logoSrc} width={32} /> <span>{text}</span>
+      <Logo src={logoSrc} width={32} /> <span style={{ color: 'white' }}>{text}</span>
     </Button>
   )
 }

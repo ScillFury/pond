@@ -24,11 +24,13 @@ const Header = styled.h1`
   font-size: 32px;
   font-weight: 600;
   margin: 0px;
+  color: #77719f;
 `
 
 const SubHeader = styled.div`
   font-size: 16px;
   margin-top: 0;
+  color: #77719f;
   line-height: 28px;
 `
 
@@ -38,11 +40,11 @@ const Wrapper = styled.div`
   margin-bottom: 10px;
   flex-wrap: wrap;
   margin-top: 50px;
-}
+
 `
 
 const Link = styled.a`
-  padding-left: 3px
+  padding-left: 3px;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -77,9 +79,9 @@ export default function Farms() {
             <Header>Farm</Header>
             <SubHeader>Let&apos;s farm FUSE and VOLT with your LP tokens!</SubHeader>
             <SubHeader>
-              <Arrow />{' '}
+              <Arrow />
               <Link href="https://tutorials.fuse.io/tutorials/fusefi-tutorials/what-are-lp-tokensgit">
-                What are LP Tokens?{' '}
+                <span style={{ color: 'darkgreen' }}>What are LP Tokens?</span>
               </Link>
             </SubHeader>
           </div>
