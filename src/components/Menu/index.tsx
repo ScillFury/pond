@@ -153,7 +153,7 @@ export default function Sidebar() {
         <Link to='/bridge'><TopMenuItem>Bridge</TopMenuItem></Link>
         <Link to={`/farm/${FUSE_CHAIN_ID}`}><TopMenuItem>Farm</TopMenuItem></Link>
         <Link to='/lending'><TopMenuItem>Lending</TopMenuItem></Link>
-        <TopMenuItemGO>Governance</TopMenuItemGO>
+        {/* <TopMenuItemGO>Governance</TopMenuItemGO> */}
       </MenuLeft>
       <MenuRight>
         <a href='https://info.fuseswap.com/' target='_blank'><TopMenuRightItem><Analytics /></TopMenuRightItem></a>

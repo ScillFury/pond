@@ -92,11 +92,11 @@ export default function MobileNav() {
             Lending
           </LinkContent>
         </StyledLink>
-        <StyledLink to="/governance" onClick={() => toggleNavMenu()}>
+        {/* <StyledLink to="/governance" onClick={() => toggleNavMenu()}>
           <LinkContent>
             Governance
           </LinkContent>
-        </StyledLink>
+        </StyledLink> */}
       </Body>
     </Wrapper>
   )
