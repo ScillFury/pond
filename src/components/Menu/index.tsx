@@ -157,13 +157,12 @@ export default function Sidebar() {
       </MenuLeft>
       <MenuRight>
         <Header />
-        <a href='https://info.fuseswap.com/' target='_blank'><TopMenuRightItem><Analytics /></TopMenuRightItem></a>
-        <TopMenuRightItem><FUSD /></TopMenuRightItem>
+
         <TopMenuRightItem><FiSettings className='SettingIcon' /></TopMenuRightItem>
         <SocialItems>
-          <a href='https://github.com/fuseio' target='_blank'><SocialItem><FaGithubSquare className='githubIcons' /></SocialItem></a>
-          <a href='https://t.me/fuse_fi' target='_blank'><SocialItem><FaTelegram className='githubIcon' /></SocialItem></a>
-          <a href='https://twitter.com/Fuse_Fi' target='_blank'><SocialItem><FaTwitterSquare className='githubIcon' /></SocialItem></a>
+ 
+          <a href='https://t.me/+P09BGAggLGRjYTEx' target='_blank'><SocialItem><FaTelegram className='githubIcon' /></SocialItem></a>
+          <a href='https://twitter.com/pondonfuse' target='_blank'><SocialItem><FaTwitterSquare className='githubIcon' /></SocialItem></a>
         </SocialItems>
       </MenuRight>
     </StyledMenu>
