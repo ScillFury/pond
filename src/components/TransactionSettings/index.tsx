@@ -1,5 +1,5 @@
-import React, { useState, useRef, useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
 
 import QuestionHelper from '../QuestionHelper'
 import { TYPE } from '../../theme'
@@ -20,7 +20,6 @@ enum DeadlineError {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background: #e7fafe;
 `
 const FancyButton = styled.button`
   color: ${({ theme }) => theme.text1};
@@ -42,12 +41,13 @@ const FancyButton = styled.button`
 `
 
 const Option = styled(FancyButton) <{ active: boolean }>`
-  background-color: ${({ active, theme }) => active && theme.primary1}!important;
+  background-color: #3ad889;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   color: ${({ active, theme }) => (active ? theme.text6 : theme.text1)}!important;
   margin-right: 8px;
+  border-style: none !important;
   :hover {
     cursor: pointer;
   }
@@ -69,9 +69,9 @@ const Input = styled.input`
 const OptionCustom = styled(FancyButton) <{ active?: boolean; warning?: boolean }>`
   height: 2rem;
   position: relative;
-  padding: 0 0.75rem;
+  /* padding: 0 0.75rem; */
+  background: #ede9f7 !important;
   flex: 1;
-  border: ${({ theme, active, warning }) => active && `1px solid ${warning ? theme.red1 : theme.primary1}`};
   :hover {
     border: ${({ theme, active, warning }) =>
     active && `1px solid ${warning ? darken(0.1, theme.red1) : darken(0.1, theme.primary1)}`};
@@ -100,7 +100,6 @@ export interface SlippageTabsProps {
 }
 
 export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, setDeadline }: SlippageTabsProps) {
-  const theme = useContext(ThemeContext)
 
   const inputRef = useRef<HTMLInputElement>()
 
@@ -154,7 +153,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
   return (
     <Wrapper>
       <RowBetween>
-        <TYPE.black fontWeight={600} fontSize={14} color={theme.text2} style={{ marginTop: 12, marginBottom: 12 }}>
+        <TYPE.black fontWeight={600} fontSize={14} color={'#8089a1'} style={{ marginTop: 12, marginBottom: 12 }}>
           Slippage tolerance
         </TYPE.black>
         <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
@@ -208,7 +207,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
               onChange={e => parseCustomSlippage(e.target.value)}
               color={!slippageInputIsValid ? 'red' : ''}
             />
-            %
+            <span style={{ color: '#8089a1' }}>%</span>
           </RowBetween>
         </OptionCustom>
       </RowBetween>
@@ -229,7 +228,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       )}
 
       <RowBetween>
-        <TYPE.black fontSize={14} fontWeight={600} color={theme.text2} style={{ marginTop: 12, marginBottom: 12 }}>
+        <TYPE.black fontSize={14} fontWeight={600} color={'#8089a1'} style={{ marginTop: 12, marginBottom: 12 }}>
           Transaction deadline
         </TYPE.black>
         <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />
@@ -245,7 +244,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
           onChange={e => parseCustomDeadline(e.target.value)}
         />
       </OptionCustom>
-      <TYPE.body style={{ paddingLeft: '8px' }} fontSize={14}>
+      <TYPE.body style={{ paddingLeft: '8px', color: '#8089a1' }} fontSize={14}>
         minutes
       </TYPE.body>
     </Wrapper>

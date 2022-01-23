@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 // import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
-import { FiSettings } from "react-icons/fi";
+
 import { FaTwitterSquare, FaTelegram } from "react-icons/fa";
 // import { IoAnalytics} from 'react-ico'
 // import LogoIcon from '../../assets/svg/fusefi-wordmark.svg'
@@ -20,8 +20,8 @@ import Header from "../Header";
 // import github from '../../assets/svg/github.svg'
 import { ReactComponent as FUSD } from '../../assets/svg/fuse-dollar.svg'
 // import { FUSE_CHAIN_ID } from '../../connectors';
-// import useRampWidget from '../../hooks/useRamp'
-// import Settings from '../../components/Settings';
+import useRampWidget from '../../hooks/useRamp';
+import Settings from '../../components/Settings';
 // import { FUSE_CHAIN_ID } from '../../connectors'
 // import { ExternalLink } from '../../theme'
 
@@ -33,7 +33,6 @@ const StyledMenu = styled.div`
   width: 100vw;
   height:60px;
   text-align: left;
-  z-index: 100;
   border-bottom: 1px solid rgb(231, 227, 235);
   background-color: white !important;
   position: relative;
@@ -133,12 +132,19 @@ const TopMenuRightItem = styled.div`
     font-size: 20px;
   }
 `;
-
+const TopMenuRightItemSet = styled.div`
+    transition: all 0.3s;
+    margin-left: 15px;
+    cursor: pointer;
+    .SettingIcon{
+      font-size: 20px;
+    }
+`;
 
 
 export default function Sidebar() {
-  const node = useRef<HTMLDivElement>()
-  // const openRampWidget = useRampWidget()
+  const node = useRef<HTMLDivElement>();
+  const openRampWidget = useRampWidget();
 
   return (
     <StyledMenu ref={node as any}>
@@ -158,8 +164,8 @@ export default function Sidebar() {
       <MenuRight>
         <Header />
         <a href='https://info.fuseswap.com/' target='_blank'><TopMenuRightItem><Analytics /></TopMenuRightItem></a>
-        <TopMenuRightItem><FUSD /></TopMenuRightItem>
-        <TopMenuRightItem><FiSettings className='SettingIcon' /></TopMenuRightItem>
+        <TopMenuRightItem onClick={openRampWidget}><FUSD /></TopMenuRightItem>
+        <TopMenuRightItemSet><Settings /></TopMenuRightItemSet>
         <SocialItems>
           {/* <a href='https://github.com/fuseio' target='_blank'><SocialItem><FaGithubSquare className='githubIcons' /></SocialItem></a>
           <a href='https://t.me/fuse_fi' target='_blank'><SocialItem><FaTelegram className='githubIcon' /></SocialItem></a>
