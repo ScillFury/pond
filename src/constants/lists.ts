@@ -28,6 +28,6 @@ export const BRIDGE_DEFAULT_TOKEN_LIST_URL = getBridgeListURL(BRIDGE_LIST_ENV)
 export const BRIDGE_DEFAULT_LIST_OF_LISTS: string[] = [BRIDGE_DEFAULT_TOKEN_LIST_URL]
 
 export const SWAP_DEFAULT_TOKEN_LIST_URL =
-  'https://raw.githubusercontent.com/fuseio/fuseswap-default-token-list/master/build/fuseswap-default.tokenlist.json'
+  'https://raw.githubusercontent.com/omaidf/pondrepo/main/clist.json'
 
 export const SWAP_DEFAULT_LIST_OF_LISTS: string[] = [SWAP_DEFAULT_TOKEN_LIST_URL]
