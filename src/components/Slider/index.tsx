@@ -19,7 +19,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     -webkit-appearance: none;
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background-color: #565a69;
+    background-color: #7671a2;
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);
@@ -35,7 +35,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
   &::-moz-range-thumb {
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background-color: #565a69;
+    background-color: #7671a2;
     border-radius: 100%;
     border: none;
     color: ${({ theme }) => theme.bg1};
