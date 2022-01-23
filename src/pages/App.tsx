@@ -34,6 +34,7 @@ const AppWrapper = styled.div`
 `
 const LeftMenu = styled.div`
   height: 60px;
+  z-index: 5 !important;
   ${({ theme }) => theme.mediaWidth.upToSmall`display: none;flex: 0 0 0`};
   ${({ theme }) => theme.mediaWidth.upToMedium`display: none;flex: 0 0 22%`};
 `
