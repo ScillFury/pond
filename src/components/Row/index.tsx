@@ -40,6 +40,7 @@ export const AutoRow = styled(Row) <{ gap?: string; justify?: string }>`
 
 export const RowFixed = styled(Row) <{ gap?: string; justify?: string }>`
   width: fit-content;
+  color:#837e91;
   margin: ${({ gap }) => gap && `-${gap}`};
 `
 
