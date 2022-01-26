@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 import styled from 'styled-components'
 import AppBody from '../AppBody'
@@ -93,5 +94,62 @@ export default function Farms() {
         </Text>
       </Container>
     </AppBody>
+  )
+}
+*/
+
+import React from 'react'
+import { SwapPoolTabs } from '../../components/NavigationTabs'
+
+import { AutoColumn } from '../../components/Column'
+
+import { useChain } from '../../hooks'
+import AppBody from '../AppBody'
+import { AppWrapper, AppWrapperInner } from '../../components/swap/styleds'
+import SwitchNetwork from '../../components/swap/SwitchNetwork'
+import { UNDER_MAINTENANCE } from '../../constants'
+import Maintenance from '../../components/swap/Maintenance'
+import MainCard from '../../components/MainCard'
+
+
+export default function Farms() {
+  const { isHome } = useChain()
+
+  if (UNDER_MAINTENANCE) {
+    return <Maintenance />
+  }
+
+  if (!isHome) {
+    return (
+      <>
+        <AppBody>
+          <AppWrapper>
+            <AppWrapperInner>
+              <SwapPoolTabs active={'pool'} />
+              <MainCard>
+                <SwitchNetwork />
+              </MainCard>
+            </AppWrapperInner>
+          </AppWrapper>
+        </AppBody>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <AppBody>
+        <AppWrapper>
+          <AppWrapperInner>
+            <SwapPoolTabs active={'farm'} />
+            <MainCard>
+              <AutoColumn gap="lg" justify="center">
+                <span>&nbsp;</span>
+              </AutoColumn>
+            </MainCard>
+          </AppWrapperInner>
+        </AppWrapper>
+      </AppBody>
+    </>
   )
 }

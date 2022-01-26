@@ -54,7 +54,7 @@ const StyledNavLink = styled(NavLink).attrs({
     :before {
       content: '';
       position: absolute;
-      width: 33.3%;
+      width: 25%;
       top: 0;
       bottom: 0;
       border-radius: 16px;
@@ -83,7 +83,7 @@ const StyledArrowLeft = styled(ArrowLeft)`
   color: ${({ theme }) => theme.text1};
 `
 
-export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'bridge' }) {
+export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'bridge' | 'farm' }) {
   const { t } = useTranslation()
   return (
     <Wrapper>
@@ -96,6 +96,9 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'bridge' })
         </StyledNavLink>
         <StyledNavLink id={`bridge-nav-link`} to={'/bridge'} isActive={() => active === 'bridge'}>
           Bridge
+        </StyledNavLink>
+        <StyledNavLink id={`farm-nav-link`} to={'/farm'} isActive={() => active === 'farm'}>
+          Farm
         </StyledNavLink>
       </Tabs>
     </Wrapper>

@@ -22,7 +22,6 @@ import { ReactComponent as FUSD } from '../../assets/svg/fuse-dollar.svg'
 // import { FUSE_CHAIN_ID } from '../../connectors';
 import useRampWidget from '../../hooks/useRamp';
 import Settings from '../../components/Settings';
-// import { FUSE_CHAIN_ID } from '../../connectors'
 // import { ExternalLink } from '../../theme'
 
 // const activeClassName = 'ACTIVE'
@@ -157,7 +156,7 @@ export default function Sidebar() {
         <Link to='/swap'><TopMenuItem>Swap</TopMenuItem></Link>
         <Link to='/pool'><TopMenuItem>Pool</TopMenuItem></Link>
         <Link to='/bridge'><TopMenuItem>Bridge</TopMenuItem></Link>
-        {/* <Link to={`/farm/${FUSE_CHAIN_ID}`}><TopMenuItem>Farm</TopMenuItem></Link> */}
+        <Link to='/farm'><TopMenuItem>Farm</TopMenuItem></Link>
         {/* <Link to='/lending'><TopMenuItem>Lending</TopMenuItem></Link> */}
         {/* <TopMenuItemGO>Governance</TopMenuItemGO> */}
       </MenuLeft>
