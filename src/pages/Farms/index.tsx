@@ -98,25 +98,29 @@ export default function Farms() {
 }
 */
 
-import React from 'react'
-import { SwapPoolTabs } from '../../components/NavigationTabs'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Text } from "rebass";
+import { ButtonPrimary } from "../../components/Button";
+import { SwapPoolTabs } from "../../components/NavigationTabs";
+import { RowBetween } from "../../components/Row";
+import Question from "../../components/QuestionHelper";
 
-import { AutoColumn } from '../../components/Column'
+import { AutoColumn } from "../../components/Column";
 
-import { useChain } from '../../hooks'
-import AppBody from '../AppBody'
-import { AppWrapper, AppWrapperInner } from '../../components/swap/styleds'
-import SwitchNetwork from '../../components/swap/SwitchNetwork'
-import { UNDER_MAINTENANCE } from '../../constants'
-import Maintenance from '../../components/swap/Maintenance'
-import MainCard from '../../components/MainCard'
-
+import { useChain } from "../../hooks";
+import AppBody from "../AppBody";
+import { AppWrapper, AppWrapperInner } from "../../components/swap/styleds";
+import SwitchNetwork from "../../components/swap/SwitchNetwork";
+import { UNDER_MAINTENANCE } from "../../constants";
+import Maintenance from "../../components/swap/Maintenance";
+import MainCard from "../../components/MainCard";
 
 export default function Farms() {
-  const { isHome } = useChain()
+  const { isHome } = useChain();
 
   if (UNDER_MAINTENANCE) {
-    return <Maintenance />
+    return <Maintenance />;
   }
 
   if (!isHome) {
@@ -125,7 +129,7 @@ export default function Farms() {
         <AppBody>
           <AppWrapper>
             <AppWrapperInner>
-              <SwapPoolTabs active={'pool'} />
+              <SwapPoolTabs active={"pool"} />
               <MainCard>
                 <SwitchNetwork />
               </MainCard>
@@ -133,7 +137,7 @@ export default function Farms() {
           </AppWrapper>
         </AppBody>
       </>
-    )
+    );
   }
 
   return (
@@ -141,15 +145,32 @@ export default function Farms() {
       <AppBody>
         <AppWrapper>
           <AppWrapperInner>
-            <SwapPoolTabs active={'farm'} />
+            <SwapPoolTabs active={"farm"} />
             <MainCard>
               <AutoColumn gap="lg" justify="center">
-                <span>&nbsp;</span>
+                <ButtonPrimary
+                  id="join-pool-button"
+                  as={Link}
+                  style={{ padding: 16, marginBottom: 24 }}
+                  to="/stake/POND"
+                >
+                  <Text fontWeight={500} fontSize={18} color="white">
+                    Stake Tokens
+                  </Text>
+                </ButtonPrimary>
+              </AutoColumn>
+              <AutoColumn gap="12px" style={{ width: "100%" }}>
+                <RowBetween padding={"0 8px"}>
+                  <Text color="#7671a2" fontWeight={500}>
+                    Your Staking Balance
+                  </Text>
+                  <Question text="When you stake tokens, you are rewarded with some more extra tokens." />
+                </RowBetween>
               </AutoColumn>
             </MainCard>
           </AppWrapperInner>
         </AppWrapper>
       </AppBody>
     </>
-  )
+  );
 }
