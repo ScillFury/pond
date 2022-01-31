@@ -42,7 +42,7 @@ export default function StakeTokens() {
                     >
                       Stake Tokens
                     </Text>
-                    <Question text="" />
+                    <Question text="When you add to Staking Balance, you stake the amount in the farm. If you don’t see any balance, try adding some amount." />
                   </RowBetween>
                 </AutoColumn>
                 <AutoColumn
