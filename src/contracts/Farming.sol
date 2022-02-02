@@ -23,7 +23,7 @@ contract Farming {
     //Check for minimum amount.
     require(_amount > 0, "amount cannot be 0");
 
-    //Transfer DAI Tokens from investor to this contract for STAKING.
+    //Transfer POND tokens from investor to this contract for STAKING.
     pondToken.transferFrom(msg.sender, address(this), _amount);
 
     //Update Staking Balance
