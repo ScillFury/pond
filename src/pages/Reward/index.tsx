@@ -44,7 +44,7 @@ const Item = styled("div")`
   }
 `;
 
-export default function Farm(props: RouteComponentProps<{ address: string }>) {
+export default function Reward(props: RouteComponentProps<{ address: string }>) {
   const {
     match: {
       params: { address },

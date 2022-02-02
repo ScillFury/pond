@@ -51,7 +51,7 @@ export default function Farms() {
                 <Arrow />
                 <Link
                   target="_blank"
-                  href="https://tutorials.fuse.io/tutorials/fusefi-tutorials/what-are-lp-tokensgit"
+                  href="https://tutorials.fuse.io/tutorials/fusefi-tutorials/what-are-lp-tokens"
                 >
                   <span style={{ color: "darkgreen" }}>
                     What are LP Tokens?
