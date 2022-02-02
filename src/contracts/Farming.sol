@@ -24,6 +24,7 @@ contract Farming {
     require(_amount > 0, "amount cannot be 0");
 
     //Transfer POND tokens from investor to this contract for STAKING.
+    //Edit: LP tokens will be transferred from investor to this contract for STAKING.
     pondToken.transferFrom(msg.sender, address(this), _amount);
 
     //Update Staking Balance
