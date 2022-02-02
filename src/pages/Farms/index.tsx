@@ -61,8 +61,8 @@ export default function Farms() {
             </div>
             <Filter networkId={Number(networkId)} />
           </MainCard>
-          <FarmList networkId={Number(networkId)} />
         </AppWrapperInner>
+        <FarmList networkId={Number(networkId)} />
       </AppWrapper>
     </AppBody>
   );

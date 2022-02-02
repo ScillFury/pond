@@ -6,8 +6,13 @@ import { TableWrapper, Table, Th, TBodyTr } from "../../Table";
 import { useFarms } from "../../../state/farm/hooks";
 
 const Wrap = styled.div`
-  width: 100%;
-  margin: 12px auto;
+  width: 800px;
+  max-width: 100%;
+  height: 330px;
+  overflow: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 export default function FarmList({ networkId }: { networkId: number }) {
@@ -24,6 +29,7 @@ export default function FarmList({ networkId }: { networkId: number }) {
               <Th style={{ textAlign: "right" }}>Total Staked</Th>
               <Th style={{ textAlign: "right" }}>TVL</Th>
               <Th style={{ textAlign: "right" }}>Rewards (Day)</Th>
+              <Th style={{ textAlign: "right" }}>Enable Farm</Th>
             </tr>
           </thead>
           <tbody>
