@@ -7,7 +7,7 @@ import { useFarms } from '../../../state/farm/hooks'
 
 const Wrap = styled.div`
   width: 100%;
-  margin-bottom: 12px;
+  margin: 12px auto;
 `
 
 export default function FarmList({ networkId }: { networkId: number }) {

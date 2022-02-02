@@ -1,186 +1,69 @@
-import React, { useContext, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { Text } from "rebass";
-import styled, { ThemeContext } from "styled-components";
-import { Pair } from '@fuseio/fuse-swap-sdk'
-
-import { TYPE } from "../../theme";
+import React from "react";
+import styled from "styled-components";
 import AppBody from "../AppBody";
-import { useActiveWeb3React, useChain } from "../../hooks";
-
-import FullPositionCard from "../../components/PositionCard";
-import { ButtonPrimary } from "../../components/Button";
+import Filter from "../../components/farm/FarmList/filter";
+import FarmList from "../../components/farm/FarmList";
+import { useParams } from "react-router-dom";
 import { SwapPoolTabs } from "../../components/NavigationTabs";
-import { RowBetween } from "../../components/Row";
-import { UNDER_MAINTENANCE } from "../../constants";
-import { AutoColumn } from "../../components/Column";
-import { LightCard } from "../../components/Card";
-import {
-  AppWrapper,
-  AppWrapperInner,
-  Dots,
-} from "../../components/swap/styleds";
-import Question from "../../components/QuestionHelper";
-import SwitchNetwork from "../../components/swap/SwitchNetwork";
-import Maintenance from "../../components/swap/Maintenance";
+import { AppWrapper, AppWrapperInner } from "../../components/swap/styleds";
 import MainCard from "../../components/MainCard";
-import FarmInfo from "../../components/farm/FarmInfo";
+import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 
-import { usePairs } from "../../data/Reserves";
-import {
-  toV2LiquidityToken,
-  useTrackedTokenPairs,
-} from "../../state/user/hooks";
-import { useTokenBalancesWithLoadingIndicator } from "../../state/wallet/hooks";
+const Header = styled.h1`
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0px;
+  color: #77719f;
+`;
 
-const DarkCard = styled(LightCard)`
-  background: #ede9f7;
-  border: 0;
+const SubHeader = styled.div`
+  font-size: 16px;
+  margin-top: 0;
+  color: #77719f;
+  line-height: 28px;
+`;
+
+const Link = styled.a`
+  padding-left: 3px;
   font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #3ad889;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function Farms() {
-  const theme = useContext(ThemeContext);
-  const { isHome } = useChain();
-  const { account } = useActiveWeb3React();
-
-  const trackedTokenPairs = useTrackedTokenPairs();
-  const tokenPairsWithLiquidityTokens = useMemo(
-    () =>
-      trackedTokenPairs.map((tokens) => ({
-        liquidityToken: toV2LiquidityToken(tokens),
-        tokens,
-      })),
-    [trackedTokenPairs]
-  );
-  const liquidityTokens = useMemo(
-    () => tokenPairsWithLiquidityTokens.map((tpwlt) => tpwlt.liquidityToken),
-    [tokenPairsWithLiquidityTokens]
-  );
-  const [
-    v2PairsBalances,
-    fetchingV2PairBalances,
-  ] = useTokenBalancesWithLoadingIndicator(
-    account ?? undefined,
-    liquidityTokens
-  );
-  // fetch the reserves for all V2 pools in which the user has a balance
-  const liquidityTokensWithBalances = useMemo(
-    () =>
-      tokenPairsWithLiquidityTokens.filter(({ liquidityToken }) =>
-        v2PairsBalances[liquidityToken.address]?.greaterThan("0")
-      ),
-    [tokenPairsWithLiquidityTokens, v2PairsBalances]
-  );
-  const v2Pairs = usePairs(
-    liquidityTokensWithBalances.map(({ tokens }) => tokens)
-  );
-  const v2IsLoading =
-    fetchingV2PairBalances ||
-    v2Pairs?.length < liquidityTokensWithBalances.length ||
-    v2Pairs?.some((V2Pair) => !V2Pair);
-
-  const allV2PairsWithLiquidity = v2Pairs
-    .map(([, pair]) => pair)
-    .filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
-
-
-  if (UNDER_MAINTENANCE) {
-    return <Maintenance />;
-  }
-
-  if (!isHome) {
-    return (
-      <>
-        <AppBody>
-          <AppWrapper>
-            <AppWrapperInner>
-              <SwapPoolTabs active={"pool"} />
-              <MainCard>
-                <SwitchNetwork />
-              </MainCard>
-            </AppWrapperInner>
-          </AppWrapper>
-        </AppBody>
-      </>
-    );
-  }
+  const { networkId }: { networkId: string } = useParams();
 
   return (
-    <>
-      <AppBody>
-        <AppWrapper>
-          <AppWrapperInner>
-            <SwapPoolTabs active={"farm"} />
-            <MainCard>
-              <AutoColumn gap="lg" justify="center">
-                <ButtonPrimary
-                  id="join-pool-button"
-                  as={Link}
-                  style={{ padding: 16, marginBottom: 24 }}
-                  to="/stake/POND"
+    <AppBody>
+      <AppWrapper>
+        <AppWrapperInner>
+          <SwapPoolTabs active={"farm"} />
+          <MainCard>
+            <div>
+              <Header>Farm</Header>
+              <SubHeader>Let&apos;s farm POND with your LP tokens!</SubHeader>
+              <SubHeader>
+                <Arrow />
+                <Link
+                  target="_blank"
+                  href="https://tutorials.fuse.io/tutorials/fusefi-tutorials/what-are-lp-tokensgit"
                 >
-                  <Text fontWeight={500} fontSize={18} color="white">
-                    Stake Tokens
-                  </Text>
-                </ButtonPrimary>
-              </AutoColumn>
-              <AutoColumn gap="12px" style={{ width: "100%" }}>
-                <RowBetween padding={"0 8px"}>
-                  <Text color="#7671a2" fontWeight={500}>
-                    Your Staking Balance
-                  </Text>
-                  <Question text="When you add to Staking Balance, you stake the amount in the farm. If you don’t see any balance, try adding some amount." />
-                </RowBetween>
-                {!account ? (
-                  <DarkCard padding="30px">
-                    <TYPE.body
-                      color="#7671a2"
-                      fontSize={14}
-                      fontWeight="500"
-                      textAlign="center"
-                    >
-                      Connect to a wallet to view your balance.
-                    </TYPE.body>
-                  </DarkCard>
-                ) : v2IsLoading ? (
-                  <DarkCard padding="30px">
-                    <TYPE.body
-                      color="#7671a2"
-                      fontSize={14}
-                      fontWeight="500"
-                      textAlign="center"
-                    >
-                      <Dots>Loading</Dots>
-                    </TYPE.body>
-                  </DarkCard>
-                ) : allV2PairsWithLiquidity?.length > 0 ? (
-                  <>
-                    {allV2PairsWithLiquidity.map((v2Pair) => (
-                      <FullPositionCard
-                        key={v2Pair.liquidityToken.address}
-                        pair={v2Pair}
-                      />
-                    ))}
-                  </>
-                ) : (
-                  <DarkCard padding="30px">
-                    <TYPE.body
-                      color={theme.text2}
-                      fontSize={14}
-                      fontWeight="500"
-                      textAlign="center"
-                    >
-                      No staked amount found.
-                    </TYPE.body>
-                  </DarkCard>
-                )}
-                <FarmInfo />
-              </AutoColumn>
-            </MainCard>
-          </AppWrapperInner>
-        </AppWrapper>
-      </AppBody>
-    </>
+                  <span style={{ color: "darkgreen" }}>
+                    What are LP Tokens?
+                  </span>
+                </Link>
+              </SubHeader>
+            </div>
+            <Filter networkId={Number(networkId)} />
+          </MainCard>
+          <FarmList networkId={Number(networkId)} />
+        </AppWrapperInner>
+      </AppWrapper>
+    </AppBody>
   );
 }

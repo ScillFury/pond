@@ -1,14 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
-import { darken } from 'polished'
-import { useTranslation } from 'react-i18next'
-import { NavLink, Link as HistoryLink } from 'react-router-dom'
+import React from "react";
+import styled from "styled-components";
+import { darken } from "polished";
+import { useTranslation } from "react-i18next";
+import { NavLink, Link as HistoryLink } from "react-router-dom";
 
-import { ArrowLeft } from 'react-feather'
-import { RowBetween } from '../Row'
-import QuestionHelper from '../QuestionHelper'
+import { ArrowLeft } from "react-feather";
+import { RowBetween } from "../Row";
+import QuestionHelper from "../QuestionHelper";
+import { FUSE_CHAIN_ID } from "../../connectors";
 
-export const Wrapper = styled('div')`
+export const Wrapper = styled("div")`
   position: relative;
   margin-bottom: 15px;
   width: 100%;
@@ -21,19 +22,19 @@ export const Wrapper = styled('div')`
       margin-left: 0;
   margin-right: 0;
   `}
-`
+`;
 
 const Tabs = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   border-radius: 3rem;
   justify-content: space-evenly;
-`
+`;
 
-const activeClassName = 'ACTIVE'
+const activeClassName = "ACTIVE";
 
 const StyledNavLink = styled(NavLink).attrs({
-  activeClassName
+  activeClassName,
 })`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
@@ -52,7 +53,7 @@ const StyledNavLink = styled(NavLink).attrs({
     font-weight: 500;
     color: ${({ theme }) => theme.text1};
     :before {
-      content: '';
+      content: "";
       position: absolute;
       width: 25%;
       top: 0;
@@ -61,7 +62,8 @@ const StyledNavLink = styled(NavLink).attrs({
       padding: 2px;
       /* background: linear-gradient(90deg, hsla(247,96%,61%,1) , hsla(188,100%,64%,1)); */
       background: #3ad889;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;
     }
@@ -71,70 +73,94 @@ const StyledNavLink = styled(NavLink).attrs({
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
   }
-`
+`;
 
 const ActiveText = styled.div`
   font-weight: 500;
   font-size: 16px;
   color: #7671a2;
-`
+`;
 
 const StyledArrowLeft = styled(ArrowLeft)`
   color: ${({ theme }) => theme.text1};
-`
+`;
 
-export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'bridge' | 'farm' }) {
-  const { t } = useTranslation()
+export function SwapPoolTabs({
+  active,
+}: {
+  active: "swap" | "pool" | "bridge" | "farm";
+}) {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <Tabs>
-        <StyledNavLink id={`swap-nav-link`} to={'/swap'} isActive={() => active === 'swap'}>
-          {t('swap')}
+        <StyledNavLink
+          id={`swap-nav-link`}
+          to={"/swap"}
+          isActive={() => active === "swap"}
+        >
+          {t("swap")}
         </StyledNavLink>
-        <StyledNavLink id={`pool-nav-link`} to={'/pool'} isActive={() => active === 'pool'}>
-          {t('pool')}
+        <StyledNavLink
+          id={`pool-nav-link`}
+          to={"/pool"}
+          isActive={() => active === "pool"}
+        >
+          {t("pool")}
         </StyledNavLink>
-        <StyledNavLink id={`bridge-nav-link`} to={'/bridge'} isActive={() => active === 'bridge'}>
+        <StyledNavLink
+          id={`bridge-nav-link`}
+          to={"/bridge"}
+          isActive={() => active === "bridge"}
+        >
           Bridge
         </StyledNavLink>
-        <StyledNavLink id={`farm-nav-link`} to={'/farm'} isActive={() => active === 'farm'}>
+        <StyledNavLink
+          id={`farm-nav-link`}
+          to={`/farm/${FUSE_CHAIN_ID}`}
+          isActive={() => active === "farm"}
+        >
           Farm
         </StyledNavLink>
       </Tabs>
     </Wrapper>
-  )
+  );
 }
 
 export function FindPoolTabs() {
   return (
     <Tabs>
-      <RowBetween style={{ margin: '16px 0 30px' }}>
+      <RowBetween style={{ margin: "16px 0 30px" }}>
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
         <ActiveText>Import Pool</ActiveText>
-        <QuestionHelper text={"Use this tool to find pairs that don't automatically appear in the interface."} />
+        <QuestionHelper
+          text={
+            "Use this tool to find pairs that don't automatically appear in the interface."
+          }
+        />
       </RowBetween>
     </Tabs>
-  )
+  );
 }
 
 export function AddRemoveTabs({ adding }: { adding: boolean }) {
   return (
     <Tabs>
-      <RowBetween style={{ margin: '15px 0' }}>
+      <RowBetween style={{ margin: "15px 0" }}>
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>{adding ? 'Add' : 'Remove'} Liquidity</ActiveText>
+        <ActiveText>{adding ? "Add" : "Remove"} Liquidity</ActiveText>
         <QuestionHelper
           text={
             adding
-              ? 'When you add liquidity, you are given pool tokens representing your position. These tokens automatically earn fees proportional to your share of the pool, and can be redeemed at any time.'
-              : 'Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.'
+              ? "When you add liquidity, you are given pool tokens representing your position. These tokens automatically earn fees proportional to your share of the pool, and can be redeemed at any time."
+              : "Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive."
           }
         />
       </RowBetween>
     </Tabs>
-  )
+  );
 }
