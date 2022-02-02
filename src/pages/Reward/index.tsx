@@ -13,7 +13,6 @@ import depositIcon from "../../assets/svg/deposits.svg";
 import FarmTabs from "../../components/farm/FarmTabs";
 import { AppWrapper, AppWrapperInner } from "../../components/swap/styleds";
 import MainCard from "../../components/MainCard";
-import { SwapPoolTabs } from "../../components/NavigationTabs";
 import { useFarm } from "../../state/farm/hooks";
 import { tryFormatAmount, tryFormatDecimalAmount } from "../../utils";
 
@@ -58,7 +57,6 @@ export default function Farm(props: RouteComponentProps<{ address: string }>) {
     <AppBody>
       <AppWrapper>
         <AppWrapperInner>
-          <SwapPoolTabs active={"farm"} />
           <MainCard>
             <Wrapper style={{ paddingBottom: "25px", alignItems: "center" }}>
               <Icon height={60} name={""} pairName={farm?.pairName} />{" "}
