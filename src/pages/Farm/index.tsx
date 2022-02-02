@@ -59,54 +59,56 @@ export default function Farm(props: RouteComponentProps<{ address: string }>) {
       <AppWrapper>
         <AppWrapperInner>
           <SwapPoolTabs active={"farm"} />
+          <MainCard>
+            <Wrapper style={{ paddingBottom: "25px", alignItems: "center" }}>
+              <Icon height={60} name={""} pairName={farm?.pairName} />{" "}
+              <span>{farm?.pairName}</span>
+            </Wrapper>
+            <Wrapper style={{ paddingBottom: "10px" }}>
+              <Item>
+                <InfoPanel
+                  title="Deposit APY"
+                  data={(farm?.rewardsInfo[0].apyPercent * 100).toFixed(2)}
+                  icon={vector}
+                  apyIcon={apyPurple}
+                  label="%"
+                  txt="#8E6CC0"
+                  color="#473660"
+                  content='APY - Annual Percentage Yield (APY) is the estimated yearly yield for tokens locked. Our calculation is " $ locked * (1 year in second)/(total stake in $ * time remaining in seconds).'
+                />
+              </Item>
+              <Item>
+                <InfoPanel
+                  title="Your Deposits"
+                  data={tryFormatDecimalAmount(farm?.totalStaked, 18, 2) ?? "0"}
+                  icon={depositIcon}
+                  apyIcon={apyLightGreen}
+                  label={` ${farm?.pairName}`}
+                  txt="#0684A6"
+                  color="#034253"
+                  content="Your Deposits - Your deposits shows the total amount of FUSE you have deposited into the Staking Contract."
+                />
+              </Item>
+              <Item>
+                <InfoPanel
+                  title="Accrued Rewards"
+                  data={
+                    tryFormatAmount(
+                      farm?.rewardsInfo[0]?.accuruedRewards,
+                      18
+                    ) ?? ""
+                  }
+                  apyIcon={apyGreen}
+                  label="POND"
+                  icon={rewards}
+                  txt="#1C9E7E"
+                  color="#0E4F3F"
+                  content="Accrued Rewards - Accrued Rewards refers to the total POND you've earned for your stake"
+                />
+              </Item>
+            </Wrapper>
+          </MainCard>
         </AppWrapperInner>
-        <MainCard>
-          <Wrapper style={{ paddingBottom: "25px", alignItems: "center" }}>
-            <Icon height={60} name={""} pairName={farm?.pairName} />{" "}
-            <span>{farm?.pairName}</span>
-          </Wrapper>
-          <Wrapper style={{ paddingBottom: "10px" }}>
-            <Item>
-              <InfoPanel
-                title="Deposit APY"
-                data={(farm?.rewardsInfo[0].apyPercent * 100).toFixed(2)}
-                icon={vector}
-                apyIcon={apyPurple}
-                label="%"
-                txt="#8E6CC0"
-                color="#473660"
-                content='APY - Annual Percentage Yield (APY) is the estimated yearly yield for tokens locked. Our calculation is " $ locked * (1 year in second)/(total stake in $ * time remaining in seconds).'
-              />
-            </Item>
-            <Item>
-              <InfoPanel
-                title="Your Deposits"
-                data={tryFormatDecimalAmount(farm?.totalStaked, 18, 2) ?? "0"}
-                icon={depositIcon}
-                apyIcon={apyLightGreen}
-                label={` ${farm?.pairName}`}
-                txt="#0684A6"
-                color="#034253"
-                content="Your Deposits - Your deposits shows the total amount of FUSE you have deposited into the Staking Contract."
-              />
-            </Item>
-            <Item>
-              <InfoPanel
-                title="Accrued Rewards"
-                data={
-                  tryFormatAmount(farm?.rewardsInfo[0]?.accuruedRewards, 18) ??
-                  ""
-                }
-                apyIcon={apyGreen}
-                label="POND"
-                icon={rewards}
-                txt="#1C9E7E"
-                color="#0E4F3F"
-                content="Accrued Rewards - Accrued Rewards refers to the total POND you've earned for your stake"
-              />
-            </Item>
-          </Wrapper>
-        </MainCard>
         <TabsWrapper>
           <FarmTabs farm={farm} />
         </TabsWrapper>
