@@ -13,7 +13,7 @@ import {
 } from './AddLiquidity/redirects'
 import Pool from './Pool'
 import Farms from './Farms'
-import Reward from './Farm'
+import Reward from './Reward'
 import Lending from './Lending'
 import Home from './Home'
 import PoolFinder from './PoolFinder'
