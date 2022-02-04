@@ -5,6 +5,7 @@ import AppBody from "../AppBody";
 import { Currency } from "@fuseio/fuse-swap-sdk";
 import { Text } from "rebass";
 import Web3 from "web3";
+import { darken } from "polished";
 
 import { WrappedTokenInfo } from "../../state/lists/hooks";
 import { useActiveWeb3React } from "../../hooks";
@@ -31,6 +32,25 @@ const SubHeader = styled.div`
   margin-top: 0;
   color: #77719f;
   line-height: 28px;
+`;
+
+const ErrorButton = styled.div`
+  min-height: 48px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.text1};
+  background-color: salmon;
+  padding: 0.5rem;
+  font-weight: 600;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => darken(0.1, theme.text4)};
+  }
 `;
 
 export const Farms: React.FC<{}> = () => {
@@ -211,17 +231,13 @@ export const Farms: React.FC<{}> = () => {
             </AutoColumn>
             <AutoColumn
               gap={"lg"}
-              style={{ margin: "1rem auto", marginTop: "2rem" }}
+              style={{ margin: "1rem auto", marginTop: "1rem" }}
             >
-              <ButtonPrimary
-                onClick={withdrawTokens}
-                disabled={!valid.isValid}
-                width="100%"
-              >
+              <ErrorButton onClick={withdrawTokens}>
                 <Text fontSize={16} fontWeight={500} color="#ffffff">
                   Withdraw tokens
                 </Text>
-              </ButtonPrimary>
+              </ErrorButton>
             </AutoColumn>
           </MainCard>
         </AppWrapperInner>
