@@ -147,6 +147,7 @@ export default function Pool() {
                     <Text textAlign="center" fontSize={14} style={{ color: '#7671a2' }}>
                       <ExternalLink
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://docs.fuse.io/fuseswap/adding-liquidity"
                       >
                         <span style={{ color: '#3087d7' }}>Click here</span>

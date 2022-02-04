@@ -130,6 +130,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "web3": "^1.7.0"
   }
 }

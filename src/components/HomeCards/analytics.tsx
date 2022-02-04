@@ -48,7 +48,7 @@ const Header = styled.div`
 
 export default function HomeAnalytics() {
   return (
-    <Container href="https://info.fuseswap.com/" target="_blank">
+    <Container href="https://info.fuseswap.com/" target="_blank" rel="noopener noreferrer">
       <Header>
         <Title>Analytics</Title>
         <img src={floater} alt="Click to open logo"></img>
