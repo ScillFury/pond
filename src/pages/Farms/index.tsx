@@ -43,9 +43,7 @@ export const Farms: React.FC<{}> = () => {
   });
 
   useEffect(() => {
-    if (tokenAmount) {
-      validationForBalance();
-    }
+    validationForBalance();
   }, [tokenAmount]);
 
   const onFieldInput = (value: any) => {
@@ -70,7 +68,7 @@ export const Farms: React.FC<{}> = () => {
       } else {
         setValid({
           isValid: false,
-          reason: "Insufficient funds",
+          reason: "Incorrect Amount",
         });
       }
     }
