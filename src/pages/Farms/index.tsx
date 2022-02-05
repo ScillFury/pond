@@ -57,8 +57,6 @@ export const Farms: React.FC<{}> = () => {
   const { networkId }: { networkId: string } = useParams();
   const { account } = useActiveWeb3React();
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const [pondToken, setPondToken] = useState<any>();
   const [stakingAmount, setStakingAmount] = useState<string>("");
   const [tokenFarm, setTokenFarm] = useState<any>();
@@ -120,27 +118,24 @@ export const Farms: React.FC<{}> = () => {
   //Function to get blockchain details->accounts, tokens.
   const loadBlockchainData = useCallback(async () => {
     const web3: any = window.web3;
+
     //Load Pond Token.
-    // @ts-ignore
-    const pondTokenData = PondToken.networks[networkId];
-    if (pondTokenData) {
-      const pondToken = new web3.eth.Contract(
-        PondToken.abi,
-        pondTokenData.address
-      );
+    const pondToken = new web3.eth.Contract(
+      PondToken.abi,
+      "0x0e6bef16cfA4A98D966F27E212Cc32630D3779e1"
+    );
+    if (pondToken) {
       setPondToken(pondToken);
     } else {
       console.log("PondToken contract not deployed to detect network.");
     }
 
     //Load TokenFarm.
-    // @ts-ignore
-    const tokenFarmData = TokenFarm.networks[networkId];
-    if (tokenFarmData) {
-      const tokenFarm = new web3.eth.Contract(
-        TokenFarm.abi,
-        tokenFarmData.address
-      );
+    const tokenFarm = new web3.eth.Contract(
+      TokenFarm.abi,
+      "0xc47Aa79fC7Ec8c2aAee5EDddfA9da6200c112689"
+    );
+    if (tokenFarm) {
       setTokenFarm(tokenFarm);
     } else {
       console.log("TokenFarm contract not deployed to detect network.");
@@ -149,7 +144,6 @@ export const Farms: React.FC<{}> = () => {
 
   //Stake Pond Tokens.
   const stakeTokens = () => {
-    setLoading(true);
     const web3: any = window.web3;
     let amount = stakingAmount.toString();
     amount = web3.utils.toWei(amount, "Ether");
@@ -161,7 +155,7 @@ export const Farms: React.FC<{}> = () => {
           .stakeTokens(amount)
           .send({ from: account })
           .on("transactionHash", (hash: any) => {
-            setLoading(false);
+            console.log("Transaction success.");
           });
       });
   };
@@ -172,12 +166,12 @@ export const Farms: React.FC<{}> = () => {
       .unstakeTokens()
       .send({ from: account })
       .on("transactionHash", (hash: any) => {
-        setLoading(false);
+        console.log("Transaction success.");
       });
   };
 
   useEffect(() => {
-    if(stakingAmount) {
+    if (stakingAmount) {
       validationForBalance();
     }
   }, [stakingAmount]);
@@ -192,7 +186,6 @@ export const Farms: React.FC<{}> = () => {
     }
   }, [account, loadBlockchainData]);
 
-  console.log("Loading: " + loading);
   return (
     <AppBody>
       <AppWrapper>
