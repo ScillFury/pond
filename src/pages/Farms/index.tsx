@@ -60,7 +60,7 @@ export const Farms: React.FC<{}> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [pondToken, setPondToken] = useState<any>();
-  const [stakingAmount, setStakingAmount] = useState<string>("0");
+  const [stakingAmount, setStakingAmount] = useState<string>("");
   const [tokenFarm, setTokenFarm] = useState<any>();
 
   const [currency, setCurrency] = useState<WrappedTokenInfo | Currency>();
@@ -177,8 +177,10 @@ export const Farms: React.FC<{}> = () => {
   };
 
   useEffect(() => {
-    validationForBalance();
-  }, [stakingAmount, validationForBalance]);
+    if(stakingAmount) {
+      validationForBalance();
+    }
+  }, [stakingAmount]);
 
   useEffect(() => {
     loadWeb3();
