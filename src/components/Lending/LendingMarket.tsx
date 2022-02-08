@@ -101,6 +101,7 @@ export default function LendingMarket({ market }: LendingMarketProps) {
       <TBodyTd>
         <Link
           target="_blank"
+          rel="noopener noreferrer"
           href="https://app.ola.finance/networks/0x26a562B713648d7F3D1E1031DCc0860A4F3Fa340/markets"
           style={{ marginRight: '1rem' }}
         >
@@ -108,6 +109,7 @@ export default function LendingMarket({ market }: LendingMarketProps) {
         </Link>
         <Link
           target="_blank"
+          rel="noopener noreferrer"
           href="https://app.ola.finance/networks/0x26a562B713648d7F3D1E1031DCc0860A4F3Fa340/markets"
         >
           Borrow
