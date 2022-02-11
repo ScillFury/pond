@@ -73,9 +73,9 @@ export const Farms: React.FC<{}> = () => {
   });
 
   const onFieldInput = (value: any) => {
-    if (currency && currency.symbol === "POND") {
+    // if (currency && currency.symbol === "POND") {
       setStakingAmount(value);
-    }
+    // }
   };
 
   const handleCurrencySelect = useCallback((currency: Currency) => {
