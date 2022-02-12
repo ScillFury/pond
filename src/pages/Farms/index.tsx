@@ -128,7 +128,7 @@ export const Farms: React.FC<{}> = () => {
     //Load Pond Token.
     const pondToken = new web3.eth.Contract(
       PondToken.abi,
-      "0x0e6bef16cfA4A98D966F27E212Cc32630D3779e1"
+      "0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39"
     );
     if (pondToken) {
       setPondToken(pondToken);
@@ -139,7 +139,7 @@ export const Farms: React.FC<{}> = () => {
     //Load TokenFarm.
     const tokenFarm = new web3.eth.Contract(
       TokenFarm.abi,
-      "0xc47Aa79fC7Ec8c2aAee5EDddfA9da6200c112689"
+      "0x9abe133ec816913ee3418729b08c09A3BA709CAF"
     );
     if (tokenFarm) {
       setTokenFarm(tokenFarm);
