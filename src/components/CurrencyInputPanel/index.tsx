@@ -164,6 +164,8 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
 
+  console.log("currency = ", currency);
+  
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>

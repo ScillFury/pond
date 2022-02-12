@@ -78,6 +78,12 @@ export const Farms: React.FC<{}> = () => {
     // }
   };
 
+  const defaultCurrency = {decimals: 18, symbol: 'POND', name: 'Pond', chainId: 122, address: '0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39'} as WrappedTokenInfo;
+
+  useEffect(() => {
+    setCurrency(defaultCurrency);
+  }, []);
+
   const handleCurrencySelect = useCallback((currency: Currency) => {
     const wrappedToken = currency as WrappedTokenInfo;
     setCurrency(wrappedToken);
