@@ -80,14 +80,14 @@ export const Farms: React.FC<{}> = () => {
     // }
   };
 
-  const defaultCurrency = {decimals: 18, symbol: 'POND', name: 'Pond', chainId: 122, address: '0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39'} as WrappedTokenInfo;
+  // const defaultCurrency = {decimals: 18, symbol: 'POND', name: 'Pond', chainId: 122, address: '0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39'} as WrappedTokenInfo;
 
   useEffect(() => {
     setCurrency(ETHER);
   }, []);
 
   const handleCurrencySelect = useCallback((currency: Currency) => {
-    console.log("first currency: ",currency);
+    // console.log("first currency: ",currency);
     const wrappedToken = currency as WrappedTokenInfo;
     setCurrency(wrappedToken);
   }, []);
@@ -190,23 +190,16 @@ export const Farms: React.FC<{}> = () => {
   };
 
   //Get staked and Reward Pond Tokens.
-  const getRewardTokens = async () => {
-    const res = await tokenFarm.methods.getRewardTokens().call({from: account });
-    const sA = res[0]/1e18;
-    const rA = res[1]/1e18;
-    // console.log("Transaction result.", res[0], res[1]);
-    setsAmount(''+ sA);
-    setrAmount(''+ rA);
-  };
-
   setInterval( async () => {
-    const res = await tokenFarm.methods.getRewardTokens().call({from: account });
-    const sA = res[0]/1e18;
-    const rA = res[1]/1e18;
-    // console.log("Transaction result.", res[0], res[1]);
-    setsAmount(''+ sA);
-    setrAmount(''+ rA);
-  }, 1000);
+    if(account){
+      const res = await tokenFarm.methods.getRewardTokens().call({from: account });
+      const sA = res[0]/1e18;
+      const rA = res[1]/1e18;
+      // console.log("Transaction result.", res[0], res[1]);
+      setsAmount(''+ sA);
+      setrAmount(''+ rA);
+    }
+  }, 5000);
 
   useEffect(() => {
     if (stakingAmount) {
