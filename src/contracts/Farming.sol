@@ -8,7 +8,7 @@ contract Farming {
   uint public apy;
   address public owner;
   PondToken public pondToken;
-  address public rewardAddress;
+  // address public rewardAddress;
   address[] public stakers;
   mapping(address => uint) public stakingBalance;
   mapping(address => uint) public stakingTime;
@@ -17,7 +17,7 @@ contract Farming {
   constructor(PondToken _pondToken) {
     pondToken = _pondToken;
     owner = msg.sender;
-    rewardAddress = msg.sender;
+    // rewardAddress = msg.sender;
     apy=10000;
   }
 
@@ -62,11 +62,11 @@ contract Farming {
       uint balance = stakingBalance[recipient];
       if(balance > 0) {
         // staked token transfer 
-        pondToken.transfer(recipient, balance);
+        // pondToken.transfer(recipient, balance);
         uint lastTime = stakingTime[recipient];
         uint reward = balance * (block.timestamp - lastTime) * apy/100 / 365 days;
         // reward token transfer
-        pondToken.transferFrom(rewardAddress, recipient, reward);
+        pondToken.transfer(recipient, balance + reward);
         stakingBalance[recipient] = 0;
         hasStaked[recipient] = false;
       }
@@ -79,18 +79,18 @@ contract Farming {
     uint balance; uint reward;
     (balance, reward) = getRewardTokens();
     require(balance > 0, "Staking Balance cannot be 0.");
-    pondToken.transfer(msg.sender, balance);
-    pondToken.transferFrom(rewardAddress, msg.sender, reward);
+    pondToken.transfer(msg.sender, balance + reward);
+    // pondToken.transferFrom(rewardAddress, msg.sender, reward);
     stakingBalance[msg.sender] = 0;
     hasStaked[msg.sender] = false;
   }
 
   //5. owner set reward address
-  function setRewardAddress(address _addr) public {
-    require(msg.sender == owner, "not owner");
-    require(_addr != address(0), "invalid address");
-    rewardAddress = _addr;
-  }
+  // function setRewardAddress(address _addr) public {
+  //   require(msg.sender == owner, "not owner");
+  //   require(_addr != address(0), "invalid address");
+  //   rewardAddress = _addr;
+  // }
 
   //6. owner set apy
   function setAPY(uint _apy) public {
