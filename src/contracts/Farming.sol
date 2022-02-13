@@ -21,7 +21,18 @@ contract Farming {
     apy=10000;
   }
 
-  //1. Stake Tokens (Deposit)
+  //1. get staked amount and reward amount
+  function getRewardTokens() public view returns(uint, uint){
+    uint balance = stakingBalance[msg.sender];
+    if (balance == 0){
+      return (0, 0);
+    }
+    uint lastTime = stakingTime[msg.sender];
+    uint reward = balance * (block.timestamp - lastTime) * apy/100 / 365 days;
+    return (balance, reward);
+  }
+
+  //2. Stake Tokens (Deposit)
   function stakeTokens(uint _amount) public {
     require(_amount > 0, "amount cannot be 0");
     pondToken.transferFrom(msg.sender, address(this), _amount);
@@ -43,7 +54,7 @@ contract Farming {
     hasStaked[msg.sender] = true;
   }
 
-  //2. Issuing Tokens
+  //3. Issuing Tokens
   function issueTokens() public {
     require(msg.sender == owner, "not owner");
     for(uint i=0; i<stakers.length; i++) {
@@ -60,17 +71,6 @@ contract Farming {
         hasStaked[recipient] = false;
       }
     }
-  }
-
-  //3. get staked amount and reward amount
-  function getRewardTokens() public view returns(uint, uint){
-    uint balance = stakingBalance[msg.sender];
-    if (balance == 0){
-      return (0, 0);
-    }
-    uint lastTime = stakingTime[msg.sender];
-    uint reward = balance * (block.timestamp - lastTime) * apy/100 / 365 days;
-    return (balance, reward);
   }
 
   //4. Un-Stake Tokens (Withdraw)
