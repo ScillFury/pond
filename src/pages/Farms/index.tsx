@@ -152,7 +152,7 @@ export const Farms: React.FC<{}> = () => {
     //Load TokenFarm.
     const tokenFarm = new web3.eth.Contract(
       TokenFarm.abi,
-      "0x39aC4A3dEDAA7E609Dfc2C83326262FFbBAFE587"
+      "0xb10A22f106E1E09A81A255f18e4aE3a00DC538cc"
     );
     if (tokenFarm) {
       setTokenFarm(tokenFarm);
@@ -162,23 +162,21 @@ export const Farms: React.FC<{}> = () => {
   }, [networkId]);
 
   //Stake Pond Tokens.
-  const stakeTokens = () => {
+  const stakeTokens = async () => {
+    let res;
     const web3: any = window.web3;
     let amount = stakingAmount.toString();
     amount = web3.utils.toWei(amount, "Ether");
-    pondToken.methods
-      .approve(tokenFarm._address, amount)
-      .send({ from: account })
-      .on("transactionHash", (hash: any) => {
-        
-        console.log("Approve Transaction success.");
-        tokenFarm.methods
-          .stakeTokens(amount)
-          .send({ from: account })
-          .on("transactionHash", (hash: any) => {
-            console.log("Staking Transaction success.");
-          });
-      });
+    console.log("staking amount: ", amount);
+    res = await pondToken.methods.approve(tokenFarm._address, amount).send({ from: account });
+    console.log("Approve Transaction Result.", res);
+    res = await pondToken.methods.allowance(account, tokenFarm._address).call();
+    console.log("Allowance amount Result.", res);
+    if(res>=amount){
+      res = tokenFarm.methods.stakeTokens(amount).send({ from: account });
+      console.log("Staking Transaction Result.", res);
+    }
+
   };
 
   //Withdraw Pond Tokens.
