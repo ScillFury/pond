@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import AppBody from "../AppBody";
-import { Currency } from "@fuseio/fuse-swap-sdk";
+import { Currency, ETHER } from "@fuseio/fuse-swap-sdk";
 import { Text } from "rebass";
 import Web3 from "web3";
 import { darken } from "polished";
-
+import { RowBetween } from '../../components/Row'
 import { WrappedTokenInfo } from "../../state/lists/hooks";
 import { useActiveWeb3React } from "../../hooks";
 import { useCurrencyBalance } from "../../state/wallet/hooks";
@@ -56,13 +56,15 @@ const ErrorButton = styled.div`
 export const Farms: React.FC<{}> = () => {
   const { networkId }: { networkId: string } = useParams();
   const { account } = useActiveWeb3React();
+  const [sAmount, setsAmount] = useState<string>("");
+  const [rAmount, setrAmount] = useState<string>("");
 
   const [pondToken, setPondToken] = useState<any>();
   const [stakingAmount, setStakingAmount] = useState<string>("");
   const [tokenFarm, setTokenFarm] = useState<any>();
 
   const [currency, setCurrency] = useState<WrappedTokenInfo | Currency>();
-  const balance = useCurrencyBalance(account ?? undefined, currency);
+  
 
   const [valid, setValid] = useState<{
     isValid: boolean;
@@ -81,16 +83,27 @@ export const Farms: React.FC<{}> = () => {
   const defaultCurrency = {decimals: 18, symbol: 'POND', name: 'Pond', chainId: 122, address: '0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39'} as WrappedTokenInfo;
 
   useEffect(() => {
-    setCurrency(defaultCurrency);
+    setCurrency(ETHER);
   }, []);
 
   const handleCurrencySelect = useCallback((currency: Currency) => {
+    console.log("first currency: ",currency);
     const wrappedToken = currency as WrappedTokenInfo;
     setCurrency(wrappedToken);
   }, []);
 
+  // console.log("first currency: ",currency);
+  const balance = useCurrencyBalance(account ?? undefined, currency);
+
+  // const handleCurrencySelect = useCallback((currency: Currency) => {
+  //   const wrappedToken = currency as WrappedTokenInfo;
+  //   setCurrency(wrappedToken);
+  // }, []);
+
   const validationForBalance = useCallback(() => {
+    // console.log("validate balance: ", balance, currency);
     if (balance && currency && currency.symbol === "POND") {
+      // console.log("validate balance: ", balance, currency);
       const tranformedBal = balance?.toSignificant(6);
       if (parseFloat(tranformedBal) >= parseFloat(stakingAmount)) {
         setValid({
@@ -139,7 +152,7 @@ export const Farms: React.FC<{}> = () => {
     //Load TokenFarm.
     const tokenFarm = new web3.eth.Contract(
       TokenFarm.abi,
-      "0x9abe133ec816913ee3418729b08c09A3BA709CAF"
+      "0x39aC4A3dEDAA7E609Dfc2C83326262FFbBAFE587"
     );
     if (tokenFarm) {
       setTokenFarm(tokenFarm);
@@ -176,6 +189,25 @@ export const Farms: React.FC<{}> = () => {
       });
   };
 
+  //Get staked and Reward Pond Tokens.
+  const getRewardTokens = async () => {
+    const res = await tokenFarm.methods.getRewardTokens().call({from: account });
+    const sA = res[0]/1e18;
+    const rA = res[1]/1e18;
+    // console.log("Transaction result.", res[0], res[1]);
+    setsAmount(''+ sA);
+    setrAmount(''+ rA);
+  };
+
+  setInterval( async () => {
+    const res = await tokenFarm.methods.getRewardTokens().call({from: account });
+    const sA = res[0]/1e18;
+    const rA = res[1]/1e18;
+    // console.log("Transaction result.", res[0], res[1]);
+    setsAmount(''+ sA);
+    setrAmount(''+ rA);
+  }, 1000);
+
   useEffect(() => {
     if (stakingAmount) {
       validationForBalance();
@@ -199,12 +231,39 @@ export const Farms: React.FC<{}> = () => {
           <SwapPoolTabs active={"farm"} />
           <MainCard>
             <div>
+              <RowBetween padding={'0 8px'}>
               <Header>Farm</Header>
+              <Header>APY: 10,000%</Header>
+              </RowBetween>
               <SubHeader>Let&apos;s farm POND tokens!</SubHeader>
               <Text fontSize={16} fontWeight={500} color="#7671a2">
                 We're currently only accepting POND tokens for farm.
               </Text>
             </div>
+            <AutoColumn gap="12px" style={{ width: '100%', marginTop: "1rem" }}>
+              <RowBetween padding={'0 8px'}>
+                <Text color="#7671a2" fontWeight={500} fontSize={16}>
+                  Staked Amount
+                </Text>
+                <Text color="#7671a2" fontWeight={500} fontSize={16}>
+                  {sAmount}
+                </Text>
+                {/* <Question text="When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below." /> */}
+              </RowBetween>
+            </AutoColumn>
+
+            <AutoColumn gap="12px" style={{ width: '100%', marginTop: "1rem" }}>
+              <RowBetween padding={'0 8px'}>
+                <Text color="#7671a2" fontWeight={500} fontSize={16}>
+                  Reward Amount
+                </Text>
+                <Text color="#7671a2" fontWeight={500} fontSize={16}>
+                  {rAmount}
+                </Text>
+                {/* <Question text="When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below." /> */}
+              </RowBetween>
+            </AutoColumn>
+
             <AutoColumn gap={"lg"} style={{ margin: "1.5rem auto" }}>
               <CurrencyInputPanel
                 value={stakingAmount}
