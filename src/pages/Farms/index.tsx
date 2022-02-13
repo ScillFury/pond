@@ -170,11 +170,13 @@ export const Farms: React.FC<{}> = () => {
       .approve(tokenFarm._address, amount)
       .send({ from: account })
       .on("transactionHash", (hash: any) => {
+        
+        console.log("Approve Transaction success.");
         tokenFarm.methods
           .stakeTokens(amount)
           .send({ from: account })
           .on("transactionHash", (hash: any) => {
-            console.log("Transaction success.");
+            console.log("Staking Transaction success.");
           });
       });
   };
