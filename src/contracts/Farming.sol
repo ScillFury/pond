@@ -6,6 +6,7 @@ import "./PondToken.sol";
 contract Farming {
   //All smart contract logic goes here...
   string public name = "Farm";
+  uint public apy;
   address public owner;
   PondToken public pondToken;
   address public rewardAddress;
@@ -18,6 +19,7 @@ contract Farming {
     pondToken = _pondToken;
     owner = msg.sender;
     rewardAddress = msg.sender;
+    apy=10000;
   }
 
   //1. Stake Tokens (Deposit)
@@ -54,6 +56,10 @@ contract Farming {
       uint balance = stakingBalance[recipient];
       if(balance > 0) {
         pondToken.transfer(recipient, balance);
+        uint lastTime = stakingTime[recipient];
+        uint reward = balance * (block.timestamp - lastTime) * apy/100 / 365 days;
+        stakingBalance[recipient] = 0;
+        hasStaked[recipient] = false;
       }
     }
   }
@@ -65,7 +71,7 @@ contract Farming {
       return (0, 0);
     }
     uint lastTime = stakingTime[msg.sender];
-    uint reward = balance * (block.timestamp - lastTime) * 100 / 365 days;
+    uint reward = balance * (block.timestamp - lastTime) * apy/100 / 365 days;
     return (balance, reward);
   }
 
@@ -86,5 +92,11 @@ contract Farming {
     require(msg.sender == owner, "not owner");
     require(_addr != address(0), "invalid address");
     rewardAddress = _addr;
+  }
+
+  //6. set apy
+  function setAPY(uint _apy) public {
+    require(msg.sender == owner, "not owner");
+    apy = _apy;
   }
 }
