@@ -56,14 +56,25 @@ const ErrorButton = styled.div`
 export const Farms: React.FC<{}> = () => {
   const { networkId }: { networkId: string } = useParams();
   const { account } = useActiveWeb3React();
+<<<<<<< Updated upstream
   const [sAmount, setsAmount] = useState<string>("");
   const [rAmount, setrAmount] = useState<string>("");
+=======
+  const [sAmount, setsAmount] = useState<string>("0");
+  const [rAmount, setrAmount] = useState<string>("0");
+>>>>>>> Stashed changes
 
   const [pondToken, setPondToken] = useState<any>();
   const [stakingAmount, setStakingAmount] = useState<string>("");
   const [tokenFarm, setTokenFarm] = useState<any>();
+<<<<<<< Updated upstream
 
   const [currency, setCurrency] = useState<WrappedTokenInfo | Currency>();
+=======
+  const _tokenInfo = {"name":"Pond","address":"0x26AA272c919AcFf6E9cBA444294599c5ec0Bcd39","symbol":"POND","decimals":18,"chainId":122,"logoURI":"https://github.com/omaidf/pondrepo/raw/main/pond.PNG"} as tokenInfo;
+  const _wTokenInfo = new WrappedTokenInfo(_tokenInfo);
+  const [currency, setCurrency] = useState<WrappedTokenInfo | Currency>(_wTokenInfo);
+>>>>>>> Stashed changes
   
 
   const [valid, setValid] = useState<{
@@ -195,7 +206,11 @@ export const Farms: React.FC<{}> = () => {
       const res = await tokenFarm.methods.getRewardTokens().call({from: account });
       const sA = res[0]/1e18;
       const rA = res[1]/1e18;
+<<<<<<< Updated upstream
       // console.log("Transaction result.", res[0], res[1]);
+=======
+      console.log("Transaction result.", res[0], res[1]);
+>>>>>>> Stashed changes
       setsAmount(''+ sA);
       setrAmount(''+ rA);
     }
@@ -262,6 +277,7 @@ export const Farms: React.FC<{}> = () => {
                 value={stakingAmount}
                 onUserInput={onFieldInput}
                 onCurrencySelect={handleCurrencySelect}
+                disableCurrencySelect={true}
                 showMaxButton={false}
                 currency={currency}
                 id="add-farming-token-input"
